@@ -1,0 +1,13 @@
+{
+  // Cloudflare deploy settings for Baby Abroad: a static site served from ./dist
+  "name": "baby-abroad",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist",
+    // Serve /faq (not /faq/) so the address matches each page's canonical URL.
+    "html_handling": "drop-trailing-slash",
+    // Unknown URLs get the real 404 page (with a true 404 status), not the home page.
+    "not_found_handling": "404-page"
+  }
+}
