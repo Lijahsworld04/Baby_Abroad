@@ -15,6 +15,27 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Set the saved/default theme before first paint so the page never flashes the light fallback.
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var dark = t === "dark" || t === null || (t === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+          var h = document.documentElement;
+          if (dark) { h.classList.add("dark"); h.style.colorScheme = "dark"; h.style.background = "#021E12"; }
+        } catch (e) {}
+        // Safety net: if the app script never runs, reveal the plain content after 4s.
+        setTimeout(function () {
+          var r = document.getElementById("root");
+          if (r) r.removeAttribute("data-static");
+        }, 4000);
+      })();
+    </script>
+    <style>
+      /* Hide the plain SEO text until the real site mounts, so visitors never see an unstyled flash. */
+      #root[data-static] { opacity: 0; }
+    </style>
+    <noscript><style>#root[data-static] { opacity: 1; }</style></noscript>
     <title>Baby Abroad</title>
   </head>
   <body>

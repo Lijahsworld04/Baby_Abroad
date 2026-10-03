@@ -131,7 +131,7 @@ function bodyHtml(page) {
 }
 
 function rootHtml(page) {
-  return `<div id="root"><header><nav aria-label="Main"><a href="/">${esc(SITE.name)}</a> ${NAV.map(
+  return `<div id="root" data-static><header><nav aria-label="Main"><a href="/">${esc(SITE.name)}</a> ${NAV.map(
     ([href, label]) => `<a href="${href}">${esc(label)}</a>`,
   ).join(" ")}</nav></header>
     <main>
