@@ -346,7 +346,7 @@ export default function Home() {
             </h2>
             <Ornament className="mt-4" />
           </div>
-          {TESTIMONIALS.map((t: { name: string; detail: string; quote: string }) => (
+          {TESTIMONIALS.map((t: { name: string; detail: string; date?: string; quote: string }) => (
             <figure key={t.name} className="mt-10">
               <Card>
                 <CardContent className="p-6 sm:p-10">
@@ -356,6 +356,15 @@ export default function Home() {
                   <figcaption className="mt-6 font-heading text-primary">
                     {t.name}
                     <span className="block text-sm text-muted-foreground">{t.detail}</span>
+                    {t.date && (
+                      <time dateTime={t.date} className="block text-sm text-muted-foreground">
+                        {new Date(t.date + "T00:00:00").toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </time>
+                    )}
                   </figcaption>
                 </CardContent>
               </Card>
