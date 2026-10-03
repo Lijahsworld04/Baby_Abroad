@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Globe, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem } from "@/components/ui/navigation-menu";
 import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 font-semibold text-foreground">
-          <Globe className="size-5 text-primary" aria-hidden="true" />
+          <img src="/mascot.png" alt="" width={40} height={40} className="size-10 object-contain" />
           <span className="font-script text-3xl leading-none font-normal">Baby Abroad</span>
         </Link>
 

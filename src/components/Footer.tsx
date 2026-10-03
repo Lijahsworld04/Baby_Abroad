@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Globe, Mail, Phone, Music2, ExternalLink } from "lucide-react";
+import { Mail, Phone, Music2, ExternalLink } from "lucide-react";
 
 const FOOTER_LINKS = [
   { label: "Home", href: "/" },
@@ -20,7 +20,7 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-3">
             <Link to="/" className="flex items-center gap-2 font-semibold text-foreground">
-              <Globe className="size-5 text-primary" aria-hidden="true" />
+              <img src="/mascot.png" alt="" width={40} height={40} className="size-10 object-contain" />
               <span className="font-script text-3xl leading-none font-normal">Baby Abroad</span>
             </Link>
             <p className="max-w-xs text-sm text-muted-foreground">
