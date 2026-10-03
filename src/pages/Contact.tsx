@@ -24,6 +24,8 @@ import { Send, Clock, Globe } from "lucide-react";
 const EMAILJS_CONFIG = {
   serviceId: "Baby_Abroad",
   templateId: "template_dy2c49n",
+  // Warm confirmation email sent to the visitor (To = {{email}} in EmailJS).
+  confirmationTemplateId: "template_clvjl5d",
   publicKey: "yG8JhT0Ib6ofQYcK3",
 };
 
@@ -41,19 +43,25 @@ export default function Contact() {
 
     try {
       const { default: emailjs } = await import("@emailjs/browser");
-      await emailjs.send(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        {
-          name: String(data.get("name") ?? ""),
-          email: String(data.get("email") ?? ""),
-          preferred_time: String(data.get("preferred_time") ?? ""),
-          timezone: String(data.get("timezone") ?? ""),
-          message: String(data.get("message") ?? ""),
-          to_email: "contact@gobabyabroad.com",
-        },
-        { publicKey: EMAILJS_CONFIG.publicKey }
-      );
+      const params = {
+        name: String(data.get("name") ?? ""),
+        email: String(data.get("email") ?? ""),
+        preferred_time: String(data.get("preferred_time") ?? ""),
+        timezone: String(data.get("timezone") ?? ""),
+        message: String(data.get("message") ?? ""),
+        to_email: "contact@gobabyabroad.com",
+      };
+      const options = { publicKey: EMAILJS_CONFIG.publicKey };
+
+      // 1) Alert to Baby Abroad. If this fails, the visitor sees the error message.
+      await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, params, options);
+
+      // 2) Warm confirmation to the visitor. A failure here should never block the request.
+      try {
+        await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.confirmationTemplateId, params, options);
+      } catch {
+        /* confirmation is a nice-to-have */
+      }
       setSubmitted(true);
     } catch {
       setError(true);
