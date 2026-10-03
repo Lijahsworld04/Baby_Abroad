@@ -1,0 +1,287 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------- Brand palette (single source of truth) ---------- */
+@theme {
+    --color-green-deep: #021E12;
+    --color-green-mid: #062B1B;
+    --color-plum: #300D44;
+    --color-violet: #3E065E;
+    --color-gold: #F2AE0E;       /* main accent */
+    --color-highlight: var(--highlight);  /* highlights / key emphasis ONLY (#F2CC0E on dark) */
+    --color-cream: #F6F0E1;
+}
+
+@theme inline {
+    /* Storybook type: regal serif headings, soft bookish body, script flourishes */
+    --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-script: 'Pinyon Script', 'Snell Roundhand', 'Brush Script MT', cursive;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * Light mode is a soft fallback (cream paper, deep-green text).
+ * The brand look (green -> purple ombre, glass cards, gold accents) is the dark theme, which is the default.
+ */
+:root {
+    --background: #F6F0E1;
+    --foreground: #021E12;
+    --card: rgb(255 255 255 / 0.6);
+    --card-foreground: #021E12;
+    --popover: #FBF7EC;
+    --popover-foreground: #021E12;
+    --primary: #8A5A00;
+    --primary-foreground: #FFF8E7;
+    --secondary: rgb(2 30 18 / 0.08);
+    --secondary-foreground: #021E12;
+    --muted: rgb(2 30 18 / 0.06);
+    --muted-foreground: #2B4536;
+    --accent: rgb(138 90 0 / 0.12);
+    --accent-foreground: #5C3C00;
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: rgb(138 90 0 / 0.25);
+    --input: rgb(2 30 18 / 0.28);
+    --ring: #8A5A00;
+    --chart-1: #F2AE0E;
+    --chart-2: #3E065E;
+    --chart-3: #0D442C;
+    --chart-4: #F2CC0E;
+    --chart-5: #300D44;
+    --radius: 0.75rem;
+    --sidebar: #F6F0E1;
+    --sidebar-foreground: #021E12;
+    --sidebar-primary: #8A5A00;
+    --sidebar-primary-foreground: #FFF8E7;
+    --sidebar-accent: rgb(138 90 0 / 0.12);
+    --sidebar-accent-foreground: #5C3C00;
+    --sidebar-border: rgb(138 90 0 / 0.25);
+    --sidebar-ring: #8A5A00;
+
+    /* Light-mode glows: green is the main pool, purple the secondary one */
+    --page-base: #F6F0E1;
+    --glow-green: rgb(6 43 27 / 0.2);
+    --glow-green-2: rgb(2 30 18 / 0.1);
+    --glow-purple: rgb(62 6 94 / 0.14);
+    --glow-purple-2: rgb(48 13 68 / 0.1);
+    --glow-gold: rgb(242 174 14 / 0.1);
+    --highlight: #8A5A00;
+    --tree-gain: 0.35;
+    --tree-opacity: 0.4; /* keep the tree gentle on the light page so headlines stay crisp */
+    /* Call-to-action plates: soft lavender in light mode */
+    --cta-from: #E6DAF5;
+    --cta-to: #D3BEEE;
+}
+
+.dark {
+    /* Brand theme: ombre green -> purple, glass surfaces, gold accents, cream text */
+    --background: #021E12;
+    --foreground: #F6F0E1;
+    --card: rgb(6 14 11 / 0.42);
+    --card-foreground: #F6F0E1;
+    --popover: #062B1B;
+    --popover-foreground: #F6F0E1;
+    --primary: #F2AE0E;
+    --primary-foreground: #1B1203;
+    --secondary: rgb(246 240 225 / 0.09);
+    --secondary-foreground: #F6F0E1;
+    --muted: rgb(246 240 225 / 0.06);
+    --muted-foreground: #DCD4C0;
+    --accent: rgb(242 174 14 / 0.16);
+    --accent-foreground: #F2AE0E;
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: rgb(242 174 14 / 0.22);
+    --input: rgb(246 240 225 / 0.2);
+    --ring: #F2AE0E;
+    --chart-1: #F2AE0E;
+    --chart-2: #3E065E;
+    --chart-3: #0D442C;
+    --chart-4: #F2CC0E;
+    --chart-5: #300D44;
+    --sidebar: #062B1B;
+    --sidebar-foreground: #F6F0E1;
+    --sidebar-primary: #F2AE0E;
+    --sidebar-primary-foreground: #1B1203;
+    --sidebar-accent: rgb(242 174 14 / 0.16);
+    --sidebar-accent-foreground: #F2AE0E;
+    --sidebar-border: rgb(242 174 14 / 0.22);
+    --sidebar-ring: #F2AE0E;
+
+    /*
+     * Fixed glows (they travel with you as you scroll, like the portfolio site).
+     * GREEN is the main colour; PURPLE is the secondary corner glow.
+     */
+    --page-base: #021E12;
+    --glow-green: rgb(7 52 33 / 0.95);
+    --glow-green-2: rgb(6 43 27 / 0.7);
+    --glow-purple: rgb(62 6 94 / 0.5);
+    --glow-purple-2: rgb(48 13 68 / 0.55);
+    --glow-gold: rgb(242 174 14 / 0.05);
+    --highlight: #F2CC0E;
+    --tree-gain: 0.9;
+    --tree-opacity: 1;
+    --cta-from: rgb(48 13 68 / 0.7);
+    --cta-to: rgb(62 6 94 / 0.7);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    font-size: 112.5%; /* Cormorant runs small, so the whole scale is nudged up for readability */
+    background-color: var(--page-base);
+  }
+  body {
+    @apply text-foreground;
+    min-height: 100vh;
+    font-weight: 500;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+  }
+  /* Fixed glow layer: sits behind everything and stays put while the page scrolls */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -20;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 85% 70% at 18% 8%, var(--glow-green), transparent calc(70% - (var(--sure) - 0.4) * 40%)),
+      radial-gradient(ellipse 130% 90% at 100% 55%, color-mix(in srgb, var(--glow-purple) calc(max(0, var(--sure) - 0.4) * 160%), transparent), transparent 75%),
+      radial-gradient(circle at 90% 6%, var(--glow-purple), transparent calc(42% + (var(--sure) - 0.4) * 70%)),
+      radial-gradient(ellipse 80% 60% at 40% 78%, var(--glow-green-2), transparent 70%),
+      radial-gradient(circle at 92% 98%, var(--glow-purple-2), transparent calc(48% + (var(--sure) - 0.4) * 70%)),
+      radial-gradient(circle at 50% 100%, var(--glow-gold), transparent 55%),
+      var(--page-base);
+  }
+}
+
+@layer utilities {
+  .font-script {
+    font-family: var(--font-script);
+  }
+}
+
+/* Storybook motion: leaves drift, stars twinkle. Switched off for reduced-motion users. */
+@keyframes leaf-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-16px, 12px, 0); }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+.leaf-drift { animation: leaf-drift 11s ease-in-out infinite; }
+.star-twinkle { animation: star-twinkle 3.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .leaf-drift, .star-twinkle { animation: none; }
+}
+
+/*
+ * "How sure are you?" slider. --sure runs 0 to 1 (default 0.4 = the original look).
+ * @property lets the browser animate it, so the glow and tree ease smoothly with no reload.
+ */
+@property --sure {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.4;
+}
+:root {
+  transition: --sure 800ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { transition: none; }
+}
+.sure-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--primary), #8A4DB8, var(--highlight));
+  outline: none;
+  cursor: pointer;
+}
+.sure-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px; height: 28px; border-radius: 9999px;
+  background: var(--highlight); border: 3px solid var(--background);
+  box-shadow: 0 0 0 2px var(--highlight), 0 0 18px rgb(242 174 14 / 0.6);
+}
+.sure-range::-moz-range-thumb {
+  width: 22px; height: 22px; border-radius: 9999px;
+  background: var(--highlight); border: 3px solid var(--background);
+  box-shadow: 0 0 0 2px var(--highlight), 0 0 18px rgb(242 174 14 / 0.6);
+}
+.sure-range:focus-visible { outline: 2px solid var(--ring); outline-offset: 6px; }
+
+/*
+ * Custom cursor: the little Baby Abroad girl, pointing the way.
+ * The hotspot (0 12) is her fingertip, so clicks land where she points.
+ * Text fields keep the normal text cursor so typing stays easy. Touch screens have no cursor.
+ */
+html,
+body {
+  cursor: image-set(url("/cursor.png") 1x, url("/cursor@2x.png") 2x) 0 12, auto;
+}
+a,
+button,
+[role="button"],
+summary,
+label,
+select,
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: image-set(url("/cursor.png") 1x, url("/cursor@2x.png") 2x) 0 12, pointer;
+}
+input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+textarea {
+  cursor: text;
+}
