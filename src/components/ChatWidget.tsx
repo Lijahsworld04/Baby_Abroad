@@ -49,13 +49,51 @@ function parseReply(raw: string): string {
   return acc;
 }
 
-/** Tiny, safe formatter: **bold** only. Everything else stays plain text (no HTML, no links). */
+/**
+ * Tiny, safe formatter: **bold**, plus clickable links ONLY for this site's own addresses
+ * (gobabyabroad.com/... pages and contact@gobabyabroad.com). Everything else stays plain text,
+ * and no HTML is ever injected.
+ */
+const LINK_RE = /((?:https?:\/\/)?(?:www\.)?gobabyabroad\.com(?:\/[A-Za-z0-9\-._~/?=&%#]*)?|contact@gobabyabroad\.com)/gi;
+
+function Linkified({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(LINK_RE).map((part, i, all) => {
+        // Odd entries are matches. Skip look-alikes such as "evilgobabyabroad.com" (no lookbehind: old Safari).
+        if (i % 2 === 0 || /[\w.@/-]$/.test(all[i - 1])) return <span key={i}>{part}</span>;
+        const clean = part.replace(/[.,!?)]+$/, "");
+        const tail = part.slice(clean.length);
+        const href = clean.includes("@")
+          ? `mailto:${clean}`
+          : /^https?:\/\//i.test(clean)
+            ? clean
+            : `https://${clean}`;
+        return (
+          <span key={i}>
+            <a href={href} target="_blank" rel="noopener noreferrer" className="chat-link">
+              {clean}
+            </a>
+            {tail}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
 function Rich({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
   return (
     <>
       {parts.map((p, i) =>
-        p.startsWith("**") && p.endsWith("**") ? <strong key={i}>{p.slice(2, -2)}</strong> : <span key={i}>{p}</span>,
+        p.startsWith("**") && p.endsWith("**") ? (
+          <strong key={i}>
+            <Linkified text={p.slice(2, -2)} />
+          </strong>
+        ) : (
+          <Linkified key={i} text={p} />
+        ),
       )}
     </>
   );

@@ -375,6 +375,8 @@ textarea {
     overflow-wrap: anywhere;
 }
 .chat-msg-bot { background: var(--chat-bot-bg); border: 1px solid var(--chat-bot-border); border-bottom-left-radius: 0.3rem; }
+.chat-link { text-decoration: underline; text-underline-offset: 3px; font-weight: 700; color: inherit; }
+.chat-link:hover { text-decoration-thickness: 2px; }
 .chat-msg-me { background: var(--chat-bubble); color: var(--chat-bubble-fg); border-bottom-right-radius: 0.3rem; }
 .chat-form { display: flex; align-items: flex-end; gap: 0.5rem; padding: 0.6rem 0.75rem 0.4rem; border-top: 1px solid var(--chat-bot-border); }
 .chat-input {
