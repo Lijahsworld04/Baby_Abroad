@@ -26,6 +26,7 @@ export const LEGAL = {
           "Information you give us: when you use our contact or booking form, we receive your name, email address, preferred consultation time, time zone and the message you write.",
           "Information about your plans: if you become a client, you may share details about your destination, budget, work and goals so that we can build your plan.",
           "Payment information: payments are handled by Stripe or Zelle. We do not see or store your full card or bank details.",
+          "Chat messages: if you use the chat helper (Aajah, an AI assistant), the messages you type are processed by our automation and AI providers to produce a reply. Please do not share passwords, ID numbers or payment details in the chat.",
           "Basic technical information: our hosting provider and privacy-friendly analytics may record things like your approximate region, device type, browser and the pages you visit, without using cookies to follow you around the web.",
         ],
       },
@@ -56,6 +57,7 @@ export const LEGAL = {
         paragraphs: ["To run the site, we rely on trusted providers who process data on our behalf:"],
         list: [
           "Cloudflare, for hosting, security and privacy-friendly analytics.",
+          "Our automation and AI providers, which process the messages you type into the chat helper to write replies.",
           "EmailJS, which delivers the messages you send through our contact form to our inbox.",
           "Google Fonts, which loads the typefaces on this site and may receive your IP address when it does.",
           "Stripe and Zelle, for payments. They have their own privacy policies.",

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/Navbar";
+import { ChatWidget } from "@/components/ChatWidget";
 import { Footer } from "@/components/Footer";
 import { SEOHead, type SEOPage } from "@/components/SEOHead";
 import { getPage } from "@/seo/pages.js";
@@ -28,6 +29,7 @@ export function Layout({ children, path, page }: LayoutProps) {
         {children}
       </main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }
