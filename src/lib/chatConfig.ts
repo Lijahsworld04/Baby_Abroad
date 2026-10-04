@@ -8,5 +8,5 @@ export const CHAT_URL = "https://n8n.gobabyabroad.com/webhook/f986c3c5-fa85-4995
 
 export const CHAT_NAME = "Aajah";
 export const CHAT_GREETING =
-  "Hi love! I'm Aajah, Baby Abroad's AI helper. Ask me about moving abroad, our services, or how booking works.";
+  "Hi lovely! 👋 My name is Aajah, how can I help you?";
 export const CHAT_MAX_CHARS = 500;
