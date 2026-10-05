@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 
 import { BackgroundTree } from "./components/BackgroundTree";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { initSureness } from "./lib/sureness";
 
 import Home from "./pages/Home";
@@ -25,6 +26,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <BackgroundTree />
         <Routes>
           <Route path="/" element={<Home />} />
