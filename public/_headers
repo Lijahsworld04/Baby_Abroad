@@ -1,6 +1,24 @@
+# Security headers for gobabyabroad.com (Cloudflare Workers static assets; applies to every page).
 /*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
+  # Don't let other sites put this site inside a frame (clickjacking). Same-origin framing only.
   X-Frame-Options: SAMEORIGIN
+  # Stop browsers from guessing file types.
+  X-Content-Type-Options: nosniff
+  # Send only the site name (not the full page address) to other sites.
+  Referrer-Policy: strict-origin-when-cross-origin
+  # Always use HTTPS for one year. (No "preload" and no "includeSubDomains": both are hard to undo.)
+  Strict-Transport-Security: max-age=31536000
+  # Switch off browser features this site never uses.
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  # Content Security Policy: the site may only load from the places listed here.
+  #   script-src: own scripts, plus ONE hash for the small theme script inside index.html
+  #     (if that inline script is ever edited, its hash must be updated here, or it will be blocked)
+  #     and Cloudflare Web Analytics (cookie-free), in case it is switched on.
+  #   style-src: own styles, inline styles (UI libraries need them), Google Fonts stylesheet.
+  #   font-src: own fonts, Google Fonts font files.
+  #   connect-src: EmailJS (contact form), n8n (Aajah chat), Cloudflare Web Analytics.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-eCzxhLpDGLpD55j52xYYKf01aphgSJpVQejxQYVp+Go=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.emailjs.com https://n8n.gobabyabroad.com https://cloudflareinsights.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'
+
+# Built, fingerprinted files never change, so browsers may keep them for a year.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
