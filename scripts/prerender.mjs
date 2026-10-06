@@ -157,7 +157,7 @@ for (const page of ALL_PAGES) {
 }
 
 // sitemap.xml (only real, indexable pages)
-const urls = ALL_PAGES.map(
+const urls = ALL_PAGES.filter((p) => !p.noindex).map(
   (p) => `  <url>
     <loc>${absoluteUrl(p.path)}</loc>
     <lastmod>${p.lastmod}</lastmod>

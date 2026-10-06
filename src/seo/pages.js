@@ -248,7 +248,13 @@ export function guidePage(guide) {
 
 export const GUIDE_PAGES = GUIDES.map(guidePage);
 
-export const ALL_PAGES = [...PAGES, ...GUIDE_PAGES];
+/** Checkout pages: built like every other page (so a direct visit works) but hidden from search and the sitemap. */
+export const CHECKOUT_PAGES = [
+  { path: "/checkout", title: "Checkout | Baby Abroad", description: "Secure checkout for Baby Abroad workbooks, consultations and written relocation plans.", h1: "Checkout", noindex: true, priority: 0, changefreq: "never", lastmod: LAST, body: [] },
+  { path: "/checkout/return", title: "Order Confirmation | Baby Abroad", description: "Your Baby Abroad order.", h1: "Order confirmation", noindex: true, priority: 0, changefreq: "never", lastmod: LAST, body: [] },
+];
+
+export const ALL_PAGES = [...PAGES, ...GUIDE_PAGES, ...CHECKOUT_PAGES];
 
 export function getPage(path) {
   const clean = path.length > 1 ? path.replace(/\/$/, "") : path;

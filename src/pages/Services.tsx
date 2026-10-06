@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Ornament } from "@/components/Ornament";
@@ -28,7 +29,10 @@ import {
   Headset,
   PhoneCall,
   Info,
+  Plus,
+  Check,
 } from "lucide-react";
+import { useCart } from "@/lib/cart";
 
 
 const SERVICES = [
@@ -67,27 +71,32 @@ const SERVICES = [
 const PRICING_ROWS = [
   {
     service: "Gettin' Gone",
+    productId: "gettin-gone",
     price: "$5 USD",
     details: "Workbook — monetary limits, location planning, necessities & non-negotiables.",
   },
   {
     service: "Mentally Expatting Better",
+    productId: "mentally-expatting-better",
     price: "$7 USD",
     details: "Workbook — mindset & mental preparation for leaving home.",
   },
   {
     service: "Bundled Books",
+    productId: "bundled-books",
     price: "$10 USD",
     details: "Both workbooks bundled at a lower price. Caters to PoCs evaluating what works best.",
   },
   {
     service: "Consultation + Written Plan",
+    productId: "consultation-written-plan",
     price: "$75 USD",
     details:
       "1-hour meeting · visa planning + step-by-step plan · delivered via email & PDF within 24 business hours.",
   },
   {
     service: "Extra Written Plan",
+    productId: "extra-written-plan",
     price: "$25 / destination (USD)",
     details: "Add-on for each additional destination.",
   },
@@ -97,6 +106,36 @@ const PRICING_ROWS = [
     details: "Weekly or bi-weekly virtual check-ins · job & visa assistance · scales with your needs.",
   },
 ];
+
+function AddButton({ productId, name }: { productId: string; name: string }) {
+  const { add } = useCart();
+  const [done, setDone] = useState(false);
+  return (
+    <Button
+      size="sm"
+      variant={done ? "secondary" : "default"}
+      aria-label={`Add ${name} to cart`}
+      onClick={() => {
+        add(productId);
+        setDone(true);
+        window.setTimeout(() => setDone(false), 1600);
+      }}
+    >
+      {done ? <Check data-icon="inline-start" /> : <Plus data-icon="inline-start" />}
+      {done ? "Added" : "Add"}
+    </Button>
+  );
+}
+
+function RowAction({ row }: { row: { service: string; productId?: string } }) {
+  return row.productId ? (
+    <AddButton productId={row.productId} name={row.service} />
+  ) : (
+    <Link to="/contact">
+      <Button size="sm" variant="outline">Get a quote</Button>
+    </Link>
+  );
+}
 
 export default function Services() {
   return (
@@ -144,30 +183,39 @@ export default function Services() {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted/60 hover:bg-muted/60">
-                    <TableHead className="w-[38%]">Service</TableHead>
-                    <TableHead className="w-[24%]">Price</TableHead>
-                    <TableHead className="w-[38%]">Details</TableHead>
+                    <TableHead className="w-[28%]">Service</TableHead>
+                    <TableHead className="w-[20%]">Price</TableHead>
+                    <TableHead className="w-[36%]">Details</TableHead>
+                    <TableHead className="hidden w-[16%] text-right md:table-cell"><span className="sr-only">Add to cart</span></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {PRICING_ROWS.map((row) => (
                     <TableRow key={row.service}>
-                      <TableCell className="font-medium">{row.service}</TableCell>
+                      <TableCell className="font-medium">
+                        {row.service}
+                        <div className="mt-2 md:hidden">
+                          <RowAction row={row} />
+                        </div>
+                      </TableCell>
                       <TableCell>
                         <Badge variant="secondary" className="h-auto px-2.5 py-0.5 text-sm font-semibold text-primary">{row.price}</Badge>
                       </TableCell>
                       <TableCell className="text-muted-foreground">
                         {row.details}
                       </TableCell>
+                      <TableCell className="hidden text-right md:table-cell">
+                        <RowAction row={row} />
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
                 <TableFooter>
                   <TableRow>
-                    <TableCell colSpan={3} className="text-muted-foreground">
+                    <TableCell colSpan={4} className="text-muted-foreground">
                       <span className="flex items-center gap-2">
                         <Info className="size-4 shrink-0 text-primary" aria-hidden="true" />
-                        Prices are indicative only; contact us for a personalized quote.
+                        Hands-On Assistance is quoted to fit your needs. Everything else can be added to your cart and paid for securely right here.
                       </span>
                     </TableCell>
                   </TableRow>

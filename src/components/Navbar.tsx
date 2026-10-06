@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, ShoppingBag } from "lucide-react";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem } from "@/components/ui/navigation-menu";
 import { Sheet, SheetTrigger, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useCart } from "@/lib/cart";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -15,6 +16,7 @@ const NAV_ITEMS = [
 ];
 
 export function Navbar() {
+  const { count } = useCart();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/15 bg-background/50 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -42,6 +44,18 @@ export function Navbar() {
 
         {/* Right actions */}
         <div className="flex items-center gap-2">
+          <Link
+            to="/checkout"
+            aria-label={count > 0 ? `Cart, ${count} item${count === 1 ? "" : "s"}` : "Cart"}
+            className="relative inline-flex items-center justify-center rounded-md p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 outline-none"
+          >
+            <ShoppingBag className="size-5" aria-hidden="true" />
+            {count > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                {count}
+              </span>
+            )}
+          </Link>
           <ThemeToggle />
           <Link to="/contact" className="hidden md:inline-flex">
             <Button size="sm">Get in Touch</Button>

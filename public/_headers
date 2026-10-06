@@ -8,16 +8,17 @@
   Referrer-Policy: strict-origin-when-cross-origin
   # Always use HTTPS for one year. (No "preload" and no "includeSubDomains": both are hard to undo.)
   Strict-Transport-Security: max-age=31536000
-  # Switch off browser features this site never uses.
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  # Switch off browser features this site never uses. (Payment is allowed only for this site and Stripe's checkout form.)
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self "https://js.stripe.com"), usb=()
   # Content Security Policy: the site may only load from the places listed here.
   #   script-src: own scripts, plus ONE hash for the small theme script inside index.html
   #     (if that inline script is ever edited, its hash must be updated here, or it will be blocked)
   #     and Cloudflare Web Analytics (cookie-free), in case it is switched on.
   #   style-src: own styles, inline styles (UI libraries need them), Google Fonts stylesheet.
   #   font-src: own fonts, Google Fonts font files.
-  #   connect-src: EmailJS (contact form), n8n (Aajah chat), Cloudflare Web Analytics.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-eCzxhLpDGLpD55j52xYYKf01aphgSJpVQejxQYVp+Go=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.emailjs.com https://n8n.gobabyabroad.com https://cloudflareinsights.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'
+  #   connect-src: EmailJS (contact form), n8n (Aajah chat), Cloudflare Web Analytics, Stripe (payments).
+  #   frame-src / js.stripe.com / *.stripe.com images: Stripe's secure payment form on the checkout page.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-eCzxhLpDGLpD55j52xYYKf01aphgSJpVQejxQYVp+Go=' https://static.cloudflareinsights.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://*.stripe.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.emailjs.com https://n8n.gobabyabroad.com https://cloudflareinsights.com https://api.stripe.com https://checkout.stripe.com; frame-src https://js.stripe.com https://hooks.stripe.com https://checkout.stripe.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'
 
 # Built, fingerprinted files never change, so browsers may keep them for a year.
 /assets/*
