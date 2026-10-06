@@ -99,7 +99,13 @@ function PaymentForm({ items }: { items: { id: string; qty: number }[] }) {
           .
         </p>
       )}
-      <div ref={holder} />
+      <div className="rounded-3xl border border-gold/35 bg-card p-3 shadow-sm backdrop-blur-md sm:p-5">
+        <div ref={holder} className="overflow-hidden rounded-2xl" />
+        <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+          <Lock className="size-3" aria-hidden="true" />
+          Payments are processed securely by Stripe. We never see your card details.
+        </p>
+      </div>
     </div>
   );
 }
