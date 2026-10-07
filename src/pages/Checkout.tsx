@@ -306,8 +306,12 @@ export function CheckoutReturn() {
               <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance">Thank you, love!</h1>
               <Ornament className="mt-4" />
               <p className="mt-4 text-muted-foreground">
-                Your payment went through{state.email ? <> and a receipt is on its way to <strong>{state.email}</strong></> : null}. We'll
-                email you next about your order, and to schedule your consultation if you booked one.
+                Your payment went through{state.email ? <> and a receipt is on its way to <strong>{state.email}</strong></> : null}. Your
+                workbooks or booking details will arrive by email from Baby Abroad within a few minutes.
+              </p>
+              <p className="mt-3 rounded-2xl border border-primary/30 bg-card/60 px-4 py-3 text-sm">
+                <strong>Don't see it?</strong> Check your <strong>spam, junk or Promotions</strong> folder. If it's there,
+                mark it "Not spam" so future emails land in your inbox.
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 Questions? Write to{" "}
