@@ -64,7 +64,7 @@ const SERVICES = [
   {
     icon: Headset,
     title: "Hands-On Assistance",
-    desc: "Weekly or bi-weekly virtual check-ins for updates and progress, plus job and visa assistance — scaling with how much support you need.",
+    desc: "Start with a 1-hour intro call ($35, credited toward your plan). Then get a custom monthly plan of weekly or bi-weekly check-ins plus job and visa assistance.",
   },
 ];
 
@@ -101,9 +101,10 @@ const PRICING_ROWS = [
     details: "Add-on for each additional destination.",
   },
   {
-    service: "Hands-On Assistance",
-    price: "From $200 / month (USD)",
-    details: "Weekly or bi-weekly virtual check-ins · job & visa assistance · scales with your needs.",
+    service: "Hands-On Assistance: Intro Call",
+    productId: "hands-on-intro-call",
+    price: "$35 call, then a custom monthly quote",
+    details: "1-hour call to plan your support · the $35 is credited toward your monthly plan · weekly or bi-weekly check-ins, job & visa assistance.",
   },
 ];
 
@@ -215,7 +216,7 @@ export default function Services() {
                     <TableCell colSpan={4} className="text-muted-foreground">
                       <span className="flex items-center gap-2">
                         <Info className="size-4 shrink-0 text-primary" aria-hidden="true" />
-                        Hands-On Assistance is quoted to fit your needs. Everything else can be added to your cart and paid for securely right here.
+                        Your monthly Hands-On Assistance plan is quoted on your intro call. Everything here can be added to your cart and paid for securely on this site, and calls are booked at checkout.
                       </span>
                     </TableCell>
                   </TableRow>
@@ -224,7 +225,7 @@ export default function Services() {
             </div>
             <p className="mt-4 text-center text-sm text-muted-foreground">
               Consultations and written plans are delivered via email &amp; PDF within 24 business
-              hours and are scheduled through email. No refunds.
+              hours and are booked at checkout. No refunds.
             </p>
           </div>
 

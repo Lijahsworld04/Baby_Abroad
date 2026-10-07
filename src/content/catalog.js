@@ -3,7 +3,7 @@
 // (worker/index.js). The server always uses these prices, never a price sent by the browser.
 // If you change a price here, also change the matching price text on the Services page.
 
-/** @typedef {{ id: string, name: string, description: string, amount: number, maxQty: number }} Product */
+/** @typedef {{ id: string, name: string, description: string, amount: number, maxQty: number, booking?: boolean }} Product */
 
 /** @type {Product[]} */
 export const PRODUCTS = [
@@ -34,6 +34,7 @@ export const PRODUCTS = [
     description: "1-hour meeting, visa planning and a step-by-step plan by email and PDF within 24 business hours.",
     amount: 7500,
     maxQty: 1,
+    booking: true, // the customer picks a call time before paying
   },
   {
     id: "extra-written-plan",
@@ -41,6 +42,14 @@ export const PRODUCTS = [
     description: "Add-on: one personalized written plan for each additional destination.",
     amount: 2500,
     maxQty: 10,
+  },
+  {
+    id: "hands-on-intro-call",
+    name: "Hands-On Assistance: Intro Call (1 hour)",
+    description: "A 1-hour call to plan your support. Your monthly plan is quoted after the call, and the $35 is credited toward it.",
+    amount: 3500,
+    maxQty: 1,
+    booking: true,
   },
 ];
 

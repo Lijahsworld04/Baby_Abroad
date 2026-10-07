@@ -31,9 +31,9 @@ export const OFFERS = [
     price: "25",
   },
   {
-    name: "Hands-On Assistance",
+    name: "Hands-On Assistance: Intro Call",
     description:
-      "Weekly or bi-weekly virtual check-ins with job and visa assistance, from $200 per month depending on the support you need.",
-    price: "200",
+      "A one-hour call to plan your support, credited toward your monthly Hands-On Assistance plan, which is quoted after the call and covers weekly or bi-weekly check-ins with job and visa help.",
+    price: "35",
   },
 ];

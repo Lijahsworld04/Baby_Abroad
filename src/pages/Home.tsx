@@ -31,7 +31,7 @@ import {
 const STATS = [
   { value: 10, suffix: "+", label: "Clients and counting" },
   { value: 75, prefix: "$", label: "Consultation + plan" },
-  { value: 200, prefix: "$", suffix: "+", label: "Hands-on assistance /mo" },
+  { value: 35, prefix: "$", label: "Hands-on assistance intro call" },
 ];
 
 const FEATURES = [

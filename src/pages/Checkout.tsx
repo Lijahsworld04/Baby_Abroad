@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Minus, Plus, Trash2, Lock, ShoppingBag, CheckCircle2 } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { Ornament } from "@/components/Ornament";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Scheduler, TimezoneSelect, detectZone, formatSlot } from "@/components/Scheduler";
 import { useCart } from "@/lib/cart";
 import { getProduct, formatPrice } from "@/content/catalog.js";
 
@@ -40,7 +41,7 @@ const TOP_META = {
   noindex: true,
 };
 
-function PaymentForm({ items }: { items: { id: string; qty: number }[] }) {
+function PaymentForm({ items, timeZone }: { items: { id: string; qty: number; slot?: string }[]; timeZone: string }) {
   const holder = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -58,7 +59,7 @@ function PaymentForm({ items }: { items: { id: string; qty: number }[] }) {
             const res = await fetch("/api/checkout", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ items }),
+              body: JSON.stringify({ items, timeZone }),
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok || !data.clientSecret) throw new Error(data.error || "Checkout could not start.");
@@ -113,11 +114,43 @@ function PaymentForm({ items }: { items: { id: string; qty: number }[] }) {
 export default function Checkout() {
   const { lines, total, setQty, remove } = useCart();
   const [paying, setPaying] = useState(false);
+  const [zone, setZone] = useState(detectZone);
+  const [picks, setPicks] = useState<Record<string, string | null>>({});
+  const [avail, setAvail] = useState<{ state: "idle" | "loading" | "ready" | "error"; slots: string[]; message?: string }>({ state: "idle", slots: [] });
+  const [refresh, setRefresh] = useState(0);
 
   const detailed = lines.flatMap((l) => {
     const p = getProduct(l.id);
     return p ? [{ ...l, product: p }] : [];
   });
+  const callLines = detailed.filter((l) => l.product.booking);
+  const needsCalls = callLines.length > 0;
+  const allPicked = callLines.every((l) => picks[l.id]);
+
+  // Fetch the open call times whenever the cart needs a call (and again after "Edit cart").
+  useEffect(() => {
+    if (!needsCalls) return;
+    let cancelled = false;
+    setAvail((a) => ({ ...a, state: "loading" }));
+    fetch("/api/availability")
+      .then(async (r) => {
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(d.error || "Scheduling is unavailable.");
+        return d;
+      })
+      .then((d) => {
+        if (cancelled) return;
+        setAvail({ state: "ready", slots: d.slots as string[] });
+        // forget any picked time that has since been taken
+        setPicks((prev) => Object.fromEntries(Object.entries(prev).map(([k, v]) => [k, v && (d.slots as string[]).includes(v) ? v : null])));
+      })
+      .catch((e: Error) => !cancelled && setAvail({ state: "error", slots: [], message: e.message }));
+    return () => {
+      cancelled = true;
+    };
+  }, [needsCalls, refresh]);
+
+  const setPick = useCallback((id: string, iso: string | null) => setPicks((p) => ({ ...p, [id]: iso })), []);
 
   return (
     <Layout page={TOP_META}>
@@ -143,7 +176,8 @@ export default function Checkout() {
               <Card className="mt-10">
                 <CardContent className="flex flex-col gap-4 py-2">
                   {detailed.map(({ product, qty }) => (
-                    <div key={product.id} className="flex flex-wrap items-center justify-between gap-3 border-b border-primary/15 pb-4 last:border-b-0 last:pb-0">
+                    <div key={product.id} className="border-b border-primary/15 pb-4 last:border-b-0 last:pb-0">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
                       <div className="min-w-0 flex-1">
                         <p className="font-medium">{product.name}</p>
                         <p className="text-sm text-muted-foreground">{formatPrice(product.amount)} each</p>
@@ -169,6 +203,32 @@ export default function Checkout() {
                       {paying && product.maxQty > 1 && <span className="text-sm text-muted-foreground">× {qty}</span>}
                       <p className="w-20 text-right font-semibold tabular-nums">{formatPrice(product.amount * qty)}</p>
                     </div>
+                    {product.booking && !paying && (
+                      <div className="mt-4 rounded-2xl border border-[var(--sched-accent)]/25 bg-[var(--sched-panel)] p-4">
+                        {avail.state === "ready" ? (
+                          <div className="flex flex-col gap-4">
+                            <TimezoneSelect value={zone} onChange={setZone} />
+                            <Scheduler
+                              slots={avail.slots}
+                              zone={zone}
+                              value={picks[product.id] ?? null}
+                              onChange={(iso) => setPick(product.id, iso)}
+                              exclude={Object.entries(picks).filter(([k, v]) => k !== product.id && v).map(([, v]) => v as string)}
+                            />
+                          </div>
+                        ) : avail.state === "error" ? (
+                          <p role="alert" className="text-sm">
+                            {avail.message} <a className="underline" href="mailto:contact@gobabyabroad.com">contact@gobabyabroad.com</a>
+                          </p>
+                        ) : (
+                          <p className="text-sm text-muted-foreground">Loading open times…</p>
+                        )}
+                      </div>
+                    )}
+                    {product.booking && paying && picks[product.id] && (
+                      <p className="mt-2 text-sm text-muted-foreground">Call: {formatSlot(picks[product.id] as string, zone)}</p>
+                    )}
+                    </div>
                   ))}
                   <div className="flex items-center justify-between border-t border-primary/25 pt-4 text-lg font-bold">
                     <span>Total (USD)</span>
@@ -179,19 +239,19 @@ export default function Checkout() {
 
               {!paying ? (
                 <div className="mt-6 text-center">
-                  <Button size="lg" onClick={() => setPaying(true)}>
+                  <Button size="lg" disabled={needsCalls && !allPicked} onClick={() => setPaying(true)}>
                     <Lock data-icon="inline-start" />
                     Continue to payment
                   </Button>
                   <p className="mt-3 text-sm text-muted-foreground">
-                    All sales are final (see our <Link className="underline" to="/terms">Terms</Link>). Consultations and plans are scheduled and delivered by email.
+                    {needsCalls && !allPicked ? "Pick a day and time for your call to continue. " : ""}All sales are final (see our <Link className="underline" to="/terms">Terms</Link>).
                   </p>
                 </div>
               ) : (
                 <div className="mt-6">
-                  <PaymentForm items={lines.map((l) => ({ id: l.id, qty: l.qty }))} />
+                  <PaymentForm items={lines.map((l) => ({ id: l.id, qty: l.qty, ...(picks[l.id] ? { slot: picks[l.id] as string } : {}) }))} timeZone={zone} />
                   <div className="mt-4 text-center">
-                    <Button variant="ghost" onClick={() => setPaying(false)}>
+                    <Button variant="ghost" onClick={() => { setPaying(false); setRefresh((n) => n + 1); }}>
                       Edit cart
                     </Button>
                   </div>

@@ -42,7 +42,7 @@ export const PAGES = [
           "Gettin' Gone workbook: monetary limits, location planning, necessities and non-negotiables.",
           "Bundled Books: both workbooks together at a lower price.",
           "Consultation + Written Plan: a one-hour meeting with visa planning and a step-by-step plan delivered within 24 business hours.",
-          "Hands-On Assistance: weekly or bi-weekly virtual check-ins with job and visa help.",
+          "Hands-On Assistance: a $35 one-hour intro call, then a custom monthly plan of weekly or bi-weekly check-ins with job and visa help.",
         ],
       },
       {
@@ -80,7 +80,7 @@ export const PAGES = [
           "Bundled Books: $10 USD",
           "Consultation + Written Plan: $75 USD",
           "Extra Written Plan: $25 per destination (USD)",
-          "Hands-On Assistance: from $200 per month (USD)",
+          "Hands-On Assistance intro call: $35 USD (credited toward your monthly plan, which is quoted after the call)",
         ],
       },
     ],

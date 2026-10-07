@@ -408,3 +408,85 @@ textarea {
 @media (prefers-reduced-motion: reduce) {
     .chat-panel, .chat-dots i, .chat-launcher { animation: none; transition: none; }
 }
+
+/* ---------- Call scheduler (checkout): purple, with light and dark versions ---------- */
+.scheduler {
+  --sched-accent: #6b2fa3;
+  --sched-on-accent: #ffffff;
+  --sched-panel: rgb(107 47 163 / 0.07);
+  --sched-accent-bg: rgb(107 47 163 / 0.14);
+}
+.dark .scheduler {
+  --sched-accent: #b592f0;
+  --sched-on-accent: #1c0b33;
+  --sched-panel: rgb(181 146 240 / 0.1);
+  --sched-accent-bg: rgb(181 146 240 / 0.2);
+}
+.scheduler .rdp-root {
+  --rdp-accent-color: var(--sched-accent);
+  --rdp-accent-background-color: var(--sched-accent-bg);
+  --rdp-day_button-border-radius: 0.75rem;
+  --rdp-day-height: 40px;
+  --rdp-day-width: 40px;
+  --rdp-day_button-height: 38px;
+  --rdp-day_button-width: 38px;
+  color: var(--foreground);
+}
+.scheduler .rdp-selected .rdp-day_button {
+  background: var(--sched-accent);
+  color: var(--sched-on-accent);
+  border-color: var(--sched-accent);
+  font-weight: 700;
+}
+.scheduler .rdp-day_button:not(:disabled):hover {
+  background: var(--sched-accent-bg);
+}
+.scheduler .rdp-selected .rdp-day_button:hover {
+  background: var(--sched-accent);
+}
+.scheduler .rdp-today:not(.rdp-selected) .rdp-day_button {
+  border-color: var(--gold, #f2ae0e);
+}
+.scheduler .rdp-chevron {
+  fill: var(--sched-accent);
+}
+.scheduler .rdp-disabled {
+  opacity: 0.35;
+}
+.sched-select {
+  width: 100%;
+  min-height: 2.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(107 47 163 / 0.45);
+  background: var(--card);
+  color: var(--foreground);
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+}
+.dark .sched-select {
+  border-color: rgb(181 146 240 / 0.5);
+  background: rgb(6 14 11 / 0.6);
+}
+.sched-select option {
+  background: #fff;
+  color: #1f1530;
+}
+.dark .sched-select option {
+  background: #14101f;
+  color: #efe8fb;
+}
+.sched-select:focus-visible {
+  outline: 2px solid var(--sched-accent, #6b2fa3);
+  outline-offset: 2px;
+}
+.sched-select:disabled {
+  opacity: 0.6;
+}
+:root {
+  --sched-accent: #6b2fa3;
+  --sched-panel: rgb(107 47 163 / 0.07);
+}
+.dark {
+  --sched-accent: #b592f0;
+  --sched-panel: rgb(181 146 240 / 0.1);
+}

@@ -136,7 +136,7 @@ export const LEGAL = {
       {
         h2: "Pricing and payment",
         paragraphs: [
-          "Prices are listed in US dollars and are indicative. Prices for consultations, written plans and hands-on assistance may be tailored to your needs, and we will confirm the price with you before you pay. We accept payment through Stripe and Zelle. Hands-on assistance is billed monthly at the rate we agree with you.",
+          "Prices are listed in US dollars and are indicative. Prices for consultations, written plans and hands-on assistance may be tailored to your needs, and we will confirm the price with you before you pay. We accept payment through Stripe and Zelle. Hands-on assistance begins with a one-hour intro call ($35), after which we quote your monthly plan. The $35 is credited toward your first month if you sign up, and ongoing assistance is billed monthly at the rate we agree with you.",
         ],
       },
       {
@@ -148,7 +148,7 @@ export const LEGAL = {
       {
         h2: "Scheduling consultations",
         paragraphs: [
-          "Consultations are held virtually and scheduled by email. Submitting a request does not guarantee a particular time. We will confirm a time with you, and if you need to reschedule, please let us know as early as possible. Rescheduling is at our discretion.",
+          "Consultations and calls are held virtually. You choose an available time when you check out, and we confirm it by email with a calendar invite. If you need to reschedule, please let us know as early as possible. Rescheduling is at our discretion.",
         ],
       },
       {
