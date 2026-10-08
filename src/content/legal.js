@@ -2,7 +2,7 @@
 // pre-rendered HTML. This is a plain-language draft, not legal advice: have a qualified
 // attorney review it before relying on it.
 
-export const LEGAL_UPDATED = "2026-10-03";
+export const LEGAL_UPDATED = "2026-10-08";
 const EMAIL = "contact@gobabyabroad.com";
 
 /**
@@ -23,9 +23,10 @@ export const LEGAL = {
         h2: "Information we collect",
         paragraphs: ["We collect only what we need to respond to you and deliver our services."],
         list: [
-          "Information you give us: when you use our contact or booking form, we receive your name, email address, preferred consultation time, time zone and the message you write.",
+          "Information you give us: when you use our contact form, we receive your name, email address, time zone and the message you write.",
+          "Order and booking information: when you buy from us, we receive your name, email address, what you ordered, and, if you booked a call, the date, time and time zone you chose. We use this to deliver your order and to put your call on our calendar.",
           "Information about your plans: if you become a client, you may share details about your destination, budget, work and goals so that we can build your plan.",
-          "Payment information: payments are handled by Stripe or Zelle. We do not see or store your full card or bank details.",
+          "Payment information: card payments on this site are handled by Stripe, and the payment form is provided by Stripe. We do not see or store your full card number. Stripe shares with us your name, email address, the amount and the status of your payment. If you pay by Zelle, your bank handles that payment and we see only what it shows us.",
           "Chat messages: if you use the chat helper (Aajah, an AI assistant), the messages you type are processed by our automation and AI providers to produce a reply. Please do not share passwords, ID numbers or payment details in the chat.",
           "Basic technical information: our hosting provider and privacy-friendly analytics may record things like your approximate region, device type, browser and the pages you visit, without using cookies to follow you around the web.",
         ],
@@ -40,6 +41,7 @@ export const LEGAL = {
         h2: "How we use your information",
         list: [
           "To reply to your messages and schedule consultations.",
+          "To email you your workbooks, booking confirmations, calendar invites and order details after you pay, and to alert us to new orders.",
           "To deliver, invoice and support the products and services you request.",
           "To improve our website, guides and services, using aggregated and non-identifying usage statistics.",
           "To meet legal and tax obligations.",
@@ -49,7 +51,8 @@ export const LEGAL = {
       {
         h2: "Cookies and local storage",
         paragraphs: [
-          "We do not use advertising or tracking cookies. Your browser may store a small setting on your own device, such as your light or dark theme and your \"How sure are you?\" slider choice, so the site remembers them. These stay on your device and are not sent to us.",
+          "We do not use advertising or tracking cookies. Your browser may store small settings on your own device, such as your light or dark theme and your \"How sure are you?\" slider choice, so the site remembers them. These stay on your device and are not sent to us.",
+          "If you add items to your cart, your browser also saves the cart (the items and quantities) on your own device so it is still there if you leave and come back. This is not a tracking cookie, and the cart is sent to us only when you go to pay. You can clear it any time by removing the items or clearing your browser's site data.",
         ],
       },
       {
@@ -60,7 +63,9 @@ export const LEGAL = {
           "Our automation and AI providers, which process the messages you type into the chat helper to write replies.",
           "EmailJS, which delivers the messages you send through our contact form to our inbox.",
           "Google Fonts, which loads the typefaces on this site and may receive your IP address when it does.",
-          "Stripe and Zelle, for payments. They have their own privacy policies.",
+          "Stripe, for card payments and the checkout form. Stripe may set its own cookies or use similar technology on the payment form to process payments and prevent fraud, under its own privacy policy. Zelle, for payments made through your bank, is covered by your bank's policies.",
+          "Google (Gmail, Google Calendar and Google Drive), which we use to email your orders, put booked calls on our calendar, send you calendar invites, and store our workbook files. Booked calls may include a Google Meet video link.",
+          "n8n, the automation tool that connects our website, payments and email. It receives your order details so that it can send your emails and calendar invites.",
           "Social platforms such as Instagram and TikTok, if you follow our links. We do not control their privacy practices.",
         ],
       },

@@ -17,7 +17,7 @@ import { LEGAL_DOCS, LEGAL_UPDATED } from "../content/legal.js";
  * }} PageMeta
  */
 
-const LAST = "2026-10-03";
+const LAST = "2026-10-08";
 
 /** @type {PageMeta[]} */
 export const PAGES = [
