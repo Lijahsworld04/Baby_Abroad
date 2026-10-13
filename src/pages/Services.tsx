@@ -198,7 +198,7 @@ export default function Services() {
             <p className="mt-3 text-center text-muted-foreground">
               Simple, transparent pricing. All prices in USD.
             </p>
-            <div className="mt-8 overflow-hidden rounded-3xl border border-primary/25 bg-card backdrop-blur-md">
+            <div className="mt-8 hidden overflow-hidden rounded-3xl border border-primary/25 bg-card backdrop-blur-md md:block">
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted/60 hover:bg-muted/60">
@@ -213,9 +213,6 @@ export default function Services() {
                     <TableRow key={row.service}>
                       <TableCell className="font-medium">
                         {row.service}
-                        <div className="mt-2 md:hidden">
-                          <RowAction row={row} />
-                        </div>
                       </TableCell>
                       <TableCell>
                         <Badge variant="secondary" className="h-auto px-2.5 py-0.5 text-sm font-semibold text-primary">{row.price}</Badge>
@@ -240,6 +237,26 @@ export default function Services() {
                   </TableRow>
                 </TableFooter>
               </Table>
+            </div>
+
+            {/* Phones: stacked cards so nothing needs side-scrolling */}
+            <div className="mt-8 space-y-3 md:hidden">
+              {PRICING_ROWS.map((row) => (
+                <div key={row.service} className="rounded-2xl border border-primary/25 bg-card p-4 backdrop-blur-md">
+                  <div className="flex items-start justify-between gap-3">
+                    <p className="font-medium break-words">{row.service}</p>
+                    <Badge variant="secondary" className="h-auto shrink-0 px-2.5 py-0.5 text-sm font-semibold text-primary">{row.price}</Badge>
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">{row.details}</p>
+                  <div className="mt-3">
+                    <RowAction row={row} />
+                  </div>
+                </div>
+              ))}
+              <p className="flex items-start gap-2 px-1 text-sm text-muted-foreground">
+                <Info className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+                Your monthly Hands-On Assistance plan is quoted on your intro call. Everything here can be added to your cart and paid for securely on this site, and calls are booked at checkout.
+              </p>
             </div>
             <p className="mt-4 text-center text-sm text-muted-foreground">
               Consultations and written plans are delivered via email &amp; PDF within 24 business
