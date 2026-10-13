@@ -198,29 +198,29 @@ export default function Services() {
             <p className="mt-3 text-center text-muted-foreground">
               Simple, transparent pricing. All prices in USD.
             </p>
-            <div className="mt-8 hidden overflow-hidden rounded-3xl border border-primary/25 bg-card backdrop-blur-md md:block">
-              <Table>
+            <div className="mt-8 hidden overflow-hidden rounded-3xl border border-primary/25 bg-card backdrop-blur-md lg:block">
+              <Table className="table-fixed">
                 <TableHeader>
                   <TableRow className="bg-muted/60 hover:bg-muted/60">
-                    <TableHead className="w-[28%]">Service</TableHead>
+                    <TableHead className="w-[26%]">Service</TableHead>
                     <TableHead className="w-[20%]">Price</TableHead>
                     <TableHead className="w-[36%]">Details</TableHead>
-                    <TableHead className="hidden w-[16%] text-right md:table-cell"><span className="sr-only">Add to cart</span></TableHead>
+                    <TableHead className="w-[16%] text-right"><span className="sr-only">Add to cart</span></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {PRICING_ROWS.map((row) => (
                     <TableRow key={row.service}>
-                      <TableCell className="font-medium">
+                      <TableCell className="font-medium whitespace-normal">
                         {row.service}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="whitespace-normal">
                         <Badge variant="secondary" className="h-auto px-2.5 py-0.5 text-sm font-semibold text-primary">{row.price}</Badge>
                       </TableCell>
-                      <TableCell className="text-muted-foreground">
+                      <TableCell className="whitespace-normal text-muted-foreground">
                         {row.details}
                       </TableCell>
-                      <TableCell className="hidden text-right md:table-cell">
+                      <TableCell className="text-right">
                         <RowAction row={row} />
                       </TableCell>
                     </TableRow>
@@ -228,7 +228,7 @@ export default function Services() {
                 </TableBody>
                 <TableFooter>
                   <TableRow>
-                    <TableCell colSpan={4} className="text-muted-foreground">
+                    <TableCell colSpan={4} className="whitespace-normal text-muted-foreground">
                       <span className="flex items-center gap-2">
                         <Info className="size-4 shrink-0 text-primary" aria-hidden="true" />
                         Your monthly Hands-On Assistance plan is quoted on your intro call. Everything here can be added to your cart and paid for securely on this site, and calls are booked at checkout.
@@ -240,7 +240,7 @@ export default function Services() {
             </div>
 
             {/* Phones: stacked cards so nothing needs side-scrolling */}
-            <div className="mt-8 space-y-3 md:hidden">
+            <div className="mt-8 space-y-3 lg:hidden">
               {PRICING_ROWS.map((row) => (
                 <div key={row.service} className="rounded-2xl border border-primary/25 bg-card p-4 backdrop-blur-md">
                   <div className="flex items-start justify-between gap-3">
