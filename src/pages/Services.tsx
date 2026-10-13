@@ -202,9 +202,9 @@ export default function Services() {
               <Table className="table-fixed">
                 <TableHeader>
                   <TableRow className="bg-muted/60 hover:bg-muted/60">
-                    <TableHead className="w-[26%]">Service</TableHead>
-                    <TableHead className="w-[20%]">Price</TableHead>
-                    <TableHead className="w-[36%]">Details</TableHead>
+                    <TableHead className="w-[24%]">Service</TableHead>
+                    <TableHead className="w-[27%]">Price</TableHead>
+                    <TableHead className="w-[33%]">Details</TableHead>
                     <TableHead className="w-[16%] text-right"><span className="sr-only">Add to cart</span></TableHead>
                   </TableRow>
                 </TableHeader>
@@ -215,7 +215,7 @@ export default function Services() {
                         {row.service}
                       </TableCell>
                       <TableCell className="whitespace-normal">
-                        <Badge variant="secondary" className="h-auto px-2.5 py-0.5 text-sm font-semibold text-primary">{row.price}</Badge>
+                        <Badge variant="secondary" className="h-auto max-w-full rounded-2xl px-2.5 py-0.5 text-left text-sm font-semibold whitespace-normal text-primary">{row.price}</Badge>
                       </TableCell>
                       <TableCell className="whitespace-normal text-muted-foreground">
                         {row.details}
@@ -245,7 +245,7 @@ export default function Services() {
                 <div key={row.service} className="rounded-2xl border border-primary/25 bg-card p-4 backdrop-blur-md">
                   <div className="flex items-start justify-between gap-3">
                     <p className="font-medium break-words">{row.service}</p>
-                    <Badge variant="secondary" className="h-auto shrink-0 px-2.5 py-0.5 text-sm font-semibold text-primary">{row.price}</Badge>
+                    <Badge variant="secondary" className="h-auto max-w-[55%] shrink-0 rounded-2xl px-2.5 py-0.5 text-left text-sm font-semibold whitespace-normal text-primary">{row.price}</Badge>
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground">{row.details}</p>
                   <div className="mt-3">
