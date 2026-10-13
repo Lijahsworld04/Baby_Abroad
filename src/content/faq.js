@@ -16,7 +16,7 @@ export const FAQS = [
   },
   {
     q: "How much do your services cost?",
-    a: "Our workbooks start at $5 USD: Gettin' Gone is $5, Mentally Expatting Better is $7, and the Bundled Books are $10. The Consultation + Written Plan is $75 USD, each extra written plan is $25 per destination, and Hands-On Assistance begins with a $35 one-hour intro call, after which your monthly plan is quoted and the $35 is credited toward it. Hands-On Assistance pricing depends on the support you need.",
+    a: "Our workbooks start at $6 USD: Gettin' Gone is $8, Mentally Expatting Better is $6, and the Bundled Books are $11. The Consultation + Written Plan is $75 USD, each extra written plan is $25 per destination, and Hands-On Assistance begins with a $35 one-hour intro call, after which your monthly plan is quoted and the $35 is credited toward it. Hands-On Assistance pricing depends on the support you need.",
   },
   {
     q: "What is included in the consultation and written plan?",

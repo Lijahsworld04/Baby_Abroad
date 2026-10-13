@@ -138,6 +138,12 @@ async function createSession(request, env, url) {
     form.set(`line_items[${i}][price_data][product_data][description]`, desc.slice(0, 900));
   });
   form.set("metadata[items]", lines.map((l) => `${l.product.id} x${l.qty}`).join(", "));
+  // Printed books ship to a U.S. address (Lulu needs a phone number for the carrier too).
+  if (lines.some((l) => l.product.physical)) {
+    form.set("shipping_address_collection[allowed_countries][0]", "US");
+    form.set("phone_number_collection[enabled]", "true");
+    form.set("metadata[ships]", "yes");
+  }
   if (booked.length) {
     form.set("metadata[bookings]", booked.map((l) => `${l.product.id}@${new Date(l.slot).toISOString()}`).join(";"));
     form.set("metadata[customer_tz]", tz);

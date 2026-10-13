@@ -61,7 +61,7 @@ export const PAGES = [
     path: "/services",
     title: "Relocation Services & Pricing | Baby Abroad",
     description:
-      "Move-abroad workbooks from $5, a $75 consultation with a written relocation plan, and hands-on support for women of color relocating internationally.",
+      "Move-abroad workbooks from $6, a $75 consultation with a written relocation plan, and hands-on support for women of color relocating internationally.",
     h1: "Services & Pricing",
     type: "CollectionPage",
     priority: 0.9,
@@ -75,9 +75,9 @@ export const PAGES = [
       {
         h2: "Pricing",
         list: [
-          "Gettin' Gone workbook: $5 USD",
-          "Mentally Expatting Better workbook: $7 USD",
-          "Bundled Books: $10 USD",
+          "Gettin' Gone workbook: $8 USD",
+          "Mentally Expatting Better workbook: $6 USD",
+          "Bundled Books: $11 USD",
           "Consultation + Written Plan: $75 USD",
           "Extra Written Plan: $25 per destination (USD)",
           "Hands-On Assistance intro call: $35 USD (credited toward your monthly plan, which is quoted after the call)",

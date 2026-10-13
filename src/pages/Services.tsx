@@ -72,20 +72,38 @@ const PRICING_ROWS = [
   {
     service: "Gettin' Gone",
     productId: "gettin-gone",
-    price: "$5 USD",
+    price: "$8 USD",
     details: "Workbook — monetary limits, location planning, necessities & non-negotiables.",
   },
   {
     service: "Mentally Expatting Better",
     productId: "mentally-expatting-better",
-    price: "$7 USD",
+    price: "$6 USD",
     details: "Workbook — mindset & mental preparation for leaving home.",
   },
   {
     service: "Bundled Books",
     productId: "bundled-books",
-    price: "$10 USD",
+    price: "$11 USD",
     details: "Both workbooks bundled at a lower price. Caters to PoCs evaluating what works best.",
+  },
+  {
+    service: "Gettin' Gone (paperback)",
+    productId: "gettin-gone-paperback",
+    price: "$25 USD",
+    details: "Printed, coil-bound workbook · free shipping to a U.S. address.",
+  },
+  {
+    service: "Mentally Expatting Better (paperback)",
+    productId: "mentally-expatting-better-paperback",
+    price: "$23 USD",
+    details: "Printed, coil-bound workbook · free shipping to a U.S. address.",
+  },
+  {
+    service: "Bundled Paperbacks",
+    productId: "bundled-paperbacks",
+    price: "$44 USD",
+    details: "Both printed, coil-bound workbooks · free shipping to a U.S. address.",
   },
   {
     service: "Consultation + Written Plan",
@@ -248,4 +266,4 @@ export default function Services() {
       </section>
     </Layout>
   );
-}
+}
