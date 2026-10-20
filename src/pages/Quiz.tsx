@@ -166,7 +166,7 @@ export default function Quiz() {
               <h1 className="text-4xl font-bold tracking-tight text-balance md:text-5xl">Find Your Best-Fit Country</h1>
               <Ornament />
               <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-                About 10 minutes. Answer a few questions about your life, budget and priorities, and we'll show your top match from ten popular relocation countries.
+                About 10 minutes. Answer a few questions about your life, budget and priorities, and we'll show your top match from 30 popular relocation countries.
               </p>
               <div className="mt-8 text-left">{Disclaimer}</div>
               <Button size="lg" className="mt-8" onClick={() => setStage("quiz")}>Start the quiz</Button>
