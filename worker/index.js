@@ -177,12 +177,50 @@ async function sessionStatus(env, url) {
   });
 }
 
+const QUIZ_MAX_BYTES = 20000;
+async function quizSubmit(request, env) {
+  if (!env.N8N_QUIZ_URL || !env.N8N_AVAILABILITY_TOKEN) {
+    return json({ error: "The quiz isn't open just yet. Please check back soon." }, 503);
+  }
+  const raw = await request.text();
+  if (raw.length > QUIZ_MAX_BYTES) return json({ error: "That was too long. Please shorten your answers." }, 413);
+  let body;
+  try { body = JSON.parse(raw); } catch { return json({ error: "Bad request." }, 400); }
+  if (body.website) return json({ ok: true }); // honeypot: pretend success
+  const email = String(body.email || "").trim().slice(0, 200);
+  const name = String(body.name || "").trim().slice(0, 80);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !name) return json({ error: "Please check your name and email." }, 400);
+  if (body.acknowledged !== true) return json({ error: "Please confirm the acknowledgment." }, 400);
+  const answers = body.answers && typeof body.answers === "object" && !Array.isArray(body.answers) ? body.answers : {};
+  const quizId = "q_" + crypto.randomUUID().replace(/-/g, "").slice(0, 16);
+  const res = await fetch(env.N8N_QUIZ_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-ba-token": env.N8N_AVAILABILITY_TOKEN },
+    body: JSON.stringify({
+      quizId, name, email,
+      marketingConsent: body.marketingConsent === true,
+      acknowledged: true,
+      topMatch: typeof body.topMatch === "string" ? body.topMatch.slice(0, 40) : null,
+      answers,
+      submittedAt: new Date().toISOString(),
+    }),
+  });
+  if (!res.ok) {
+    console.error("Quiz forward failed:", res.status);
+    return json({ error: "We couldn't save that. Please try again, or email contact@gobabyabroad.com." }, 502);
+  }
+  return json({ ok: true, quizId });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith("/api/")) return env.ASSETS.fetch(request);
 
     if (url.pathname === "/api/availability" && request.method === "GET") return await availability(env);
+    if (url.pathname === "/api/quiz" && request.method === "POST") {
+      try { return await quizSubmit(request, env); } catch (err) { console.error("Quiz error:", err && err.message); return json({ error: "Something went wrong. Please try again." }, 500); }
+    }
     if (!env.STRIPE_SECRET_KEY || !env.STRIPE_PUBLISHABLE_KEY) {
       return json({ error: "Checkout isn't switched on yet." }, 503);
     }

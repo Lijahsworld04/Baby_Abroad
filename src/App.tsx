@@ -16,6 +16,7 @@ import Faq from "./pages/Faq";
 import Guides from "./pages/Guides";
 import Guide from "./pages/Guide";
 import Checkout, { CheckoutReturn } from "./pages/Checkout";
+import Quiz from "./pages/Quiz";
 import NotFound from "./pages/NotFound";
 import Sample from "./pages/Sample";
 import { Privacy, Terms } from "./pages/Legal";
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/sample-plan" element={<Sample />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/quiz" element={<Quiz />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout/return" element={<CheckoutReturn />} />
           <Route path="*" element={<NotFound />} />

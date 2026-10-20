@@ -250,6 +250,7 @@ export const GUIDE_PAGES = GUIDES.map(guidePage);
 
 /** Checkout pages: built like every other page (so a direct visit works) but hidden from search and the sitemap. */
 export const CHECKOUT_PAGES = [
+  { path: "/quiz", title: "Relocation Match Quiz | Baby Abroad", description: "A free quiz to find your best-fit country to move to.", h1: "Find Your Best-Fit Country", noindex: true, priority: 0, changefreq: "never", lastmod: LAST, body: [] },
   { path: "/checkout", title: "Checkout | Baby Abroad", description: "Secure checkout for Baby Abroad workbooks, consultations and written relocation plans.", h1: "Checkout", noindex: true, priority: 0, changefreq: "never", lastmod: LAST, body: [] },
   { path: "/checkout/return", title: "Order Confirmation | Baby Abroad", description: "Your Baby Abroad order.", h1: "Order confirmation", noindex: true, priority: 0, changefreq: "never", lastmod: LAST, body: [] },
 ];
