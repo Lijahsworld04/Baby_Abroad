@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "@/lib/cart";
 import { Layout } from "@/components/Layout";
 import { Ornament } from "@/components/Ornament";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { SCREENS, scoreCountries } from "@/content/quiz";
+import { SCREENS, scoreCountries, PAID_REPORTS_OPEN } from "@/content/quiz";
 
 type Answers = Record<string, any>;
 type Stage = "intro" | "quiz" | "contact" | "result";
@@ -50,6 +51,9 @@ export default function Quiz() {
   const [contact, setContact] = useState({ name: "", email: "", email2: "", ack: false, marketing: false, website: "" });
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [quizId, setQuizId] = useState("");
+  const navigate = useNavigate();
+  const cart = useCart();
 
   useEffect(() => {
     try {
@@ -91,6 +95,14 @@ export default function Quiz() {
     window.scrollTo({ top: 0 });
   }
 
+  function buy(id: "quiz-snapshot" | "quiz-brief") {
+    cart.remove("quiz-snapshot");
+    cart.remove("quiz-brief");
+    cart.add(id);
+    navigate("/checkout");
+  }
+  const canBuy = PAID_REPORTS_OPEN && !!quizId;
+
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
@@ -101,7 +113,9 @@ export default function Quiz() {
     if (!contact.ack) return setError("Please tick the box to confirm you've read the note about results and the consultation credit.");
     setSending(true);
     try {
-      if (!PREVIEW) {
+      if (PREVIEW) {
+        setQuizId("");
+      } else {
         const res = await fetch("/api/quiz", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -113,11 +127,21 @@ export default function Quiz() {
             website: contact.website,
             answers,
             topMatch: scoreCountries(answers)[0]?.slug ?? null,
+            ranking: scoreCountries(answers).slice(0, 8).map((r: any) => ({ slug: r.slug, name: r.name, score: Math.round(r.score), reasons: r.reasons })),
           }),
         });
         if (!res.ok) {
           const d = await res.json().catch(() => ({}));
           throw new Error(d.error || "Something went wrong.");
+        }
+        const ok = await res.json().catch(() => ({}));
+        if (typeof ok.quizId === "string") {
+          setQuizId(ok.quizId);
+          try {
+            sessionStorage.setItem("ba-quiz-id", ok.quizId);
+          } catch {
+            /* ignore */
+          }
         }
       }
       try {
@@ -290,12 +314,12 @@ export default function Quiz() {
                 <Card><CardContent className="p-5">
                   <p className="font-bold">Match + Visa Snapshot</p><p className="text-2xl font-bold">$20</p>
                   <p className="mt-2 text-sm text-muted-foreground">Your ranked matches, why each fits, and the likely visa route for your passport.</p>
-                  <Button className="mt-4 w-full" disabled>Opening soon</Button>
+                  <Button className="mt-4 w-full" disabled={!canBuy} onClick={() => buy("quiz-snapshot")}>{canBuy ? "Get the Snapshot" : "Opening soon"}</Button>
                 </CardContent></Card>
                 <Card><CardContent className="p-5">
                   <p className="font-bold">Full Relocation Brief</p><p className="text-2xl font-bold">$40</p>
                   <p className="mt-2 text-sm text-muted-foreground">Everything in the Snapshot, plus costs, cities, healthcare, a first-90-days plan and your next steps.</p>
-                  <Button className="mt-4 w-full" disabled>Opening soon</Button>
+                  <Button className="mt-4 w-full" disabled={!canBuy} onClick={() => buy("quiz-brief")}>{canBuy ? "Get the Full Brief" : "Opening soon"}</Button>
                 </CardContent></Card>
               </div>
               <div className="mt-6">{Disclaimer}</div>

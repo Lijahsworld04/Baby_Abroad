@@ -2,7 +2,7 @@
 // pre-rendered HTML. This is a plain-language draft, not legal advice: have a qualified
 // attorney review it before relying on it.
 
-export const LEGAL_UPDATED = "2026-10-08";
+export const LEGAL_UPDATED = "2026-10-21";
 const EMAIL = "contact@gobabyabroad.com";
 
 /**
@@ -25,6 +25,7 @@ export const LEGAL = {
         list: [
           "Information you give us: when you use our contact form, we receive your name, email address, time zone and the message you write.",
           "Order and booking information: when you buy from us, we receive your name, email address, what you ordered, and, if you booked a call, the date, time and time zone you chose. We use this to deliver your order and to put your call on our calendar.",
+          "Relocation quiz: if you take our relocation match quiz, we receive your first name, your email address, and your answers. These can include your passport country, budget, income and savings range, timeline, who is moving with you (such as children or pets), language, climate and lifestyle preferences, work situation, and anything you choose to type in the free-text boxes. One question about ongoing care needs is optional and kept private. Please do not type passport numbers, ID numbers or other highly sensitive details into the quiz.",
           "Information about your plans: if you become a client, you may share details about your destination, budget, work and goals so that we can build your plan.",
           "Payment information: card payments on this site are handled by Stripe, and the payment form is provided by Stripe. We do not see or store your full card number. Stripe shares with us your name, email address, the amount and the status of your payment. If you pay by Zelle, your bank handles that payment and we see only what it shows us.",
           "Chat messages: if you use the chat helper (Aajah, an AI assistant), the messages you type are processed by our automation and AI providers to produce a reply. Please do not share passwords, ID numbers or payment details in the chat.",
@@ -41,6 +42,8 @@ export const LEGAL = {
         h2: "How we use your information",
         list: [
           "To reply to your messages and schedule consultations.",
+          "To prepare your quiz results and, if you buy one, your relocation report, and to email them to you.",
+          "To follow up by email about your quiz results and your move. If you ticked the optional box, we may also send you occasional relocation tips and offers. You can unsubscribe at any time using the link in our emails or by emailing us.",
           "To email you your workbooks, booking confirmations, calendar invites and order details after you pay, and to alert us to new orders.",
           "To deliver, invoice and support the products and services you request.",
           "To improve our website, guides and services, using aggregated and non-identifying usage statistics.",
@@ -65,7 +68,11 @@ export const LEGAL = {
           "Google Fonts, which loads the typefaces on this site and may receive your IP address when it does.",
           "Stripe, for card payments and the checkout form. Stripe may set its own cookies or use similar technology on the payment form to process payments and prevent fraud, under its own privacy policy. Zelle, for payments made through your bank, is covered by your bank's policies.",
           "Google (Gmail, Google Calendar and Google Drive), which we use to email your orders, put booked calls on our calendar, send you calendar invites, and store our workbook files. Booked calls may include a Google Meet video link.",
-          "n8n, the automation tool that connects our website, payments and email. It receives your order details so that it can send your emails and calendar invites.",
+          "n8n, the automation tool that connects our website, payments and email. It receives your order details and quiz answers so that it can send your emails and calendar invites and prepare your report.",
+          "Google Sheets and Google Drive, where we store quiz submissions and the reports we create for you.",
+          "AI writing providers, which receive your quiz answers and our country research to help write your report. We ask them to use that information only to produce your report.",
+          "Cloudflare, which also turns your finished report into a PDF.",
+          "Telegram, which we use for internal alerts and to review each report before it is sent to you. Reports and your name and email may pass through this internal channel.",
           "Social platforms such as Instagram and TikTok, if you follow our links. We do not control their privacy practices.",
         ],
       },
@@ -73,6 +80,7 @@ export const LEGAL = {
         h2: "How long we keep your information",
         paragraphs: [
           "We keep contact and client information for as long as we need it to serve you and meet legal, tax and accounting requirements, and then delete or anonymize it. You can ask us to delete it sooner, unless we are required to keep it.",
+          "Quiz answers are kept so that we can prepare your results, answer follow-up questions and tailor a consultation if you book one. If you take the quiz but do not buy anything, we may still contact you about your results, and we may keep your answers until you ask us to delete them or unsubscribe.",
         ],
       },
       {
@@ -123,7 +131,7 @@ export const LEGAL = {
       {
         h2: "What we provide",
         paragraphs: [
-          "Baby Abroad offers workbooks, consultations, written relocation plans, free guides and hands-on assistance to help people plan a move abroad. The details of each offering are described on our Services page.",
+          "Baby Abroad offers a relocation match quiz with paid report options, workbooks, consultations, written relocation plans, free guides and hands-on assistance to help people plan a move abroad. The details of each offering are described on our Services page.",
         ],
       },
       {
@@ -147,7 +155,25 @@ export const LEGAL = {
       {
         h2: "No refunds",
         paragraphs: [
-          "All sales are final. Workbooks, consultations, written relocation plans and assistance are non-refundable, because our products are delivered digitally and cannot be returned once you have received them. If you are unsure which offering fits, please contact us before you buy and we will help you choose.",
+          "All sales are final. Workbooks, quiz reports, consultations, written relocation plans and assistance are non-refundable, because our products are delivered digitally and cannot be returned once you have received them. If you are unsure which offering fits, please contact us before you buy and we will help you choose.",
+        ],
+      },
+      {
+        h2: "The relocation quiz and quiz reports",
+        paragraphs: [
+          "The relocation match quiz is free. Your full results are not shown on the website. They are available only as a paid report, which we email to you as a PDF at the price shown at checkout. By submitting the quiz you agree that we may contact you by email about your results and your move; you can unsubscribe at any time.",
+          "Quiz reports are general guidance prepared from your answers and from our research, using automated tools that we review. Each report shows when our country information was last checked. Visa and residency rules, fees and costs change often and can be wrong or out of date, so you must confirm every requirement with the official government source before you apply or pay for anything.",
+          "A quiz report is a starting point. A personalized plan is done on a one-on-one video consultation, and your plan will be redone in more depth after that call.",
+        ],
+      },
+      {
+        h2: "Consultation credit",
+        paragraphs: ["If you buy a quiz report, what you paid for it is credited toward a $75 video consultation, on these conditions:"],
+        list: [
+          "The credit is delivered as a private, one-time promo code that we email to you with your report.",
+          "You must book and pay for the consultation within 30 days of buying the report. After that, the code expires.",
+          "The credit can be used once, for one consultation. It has no cash value, cannot be refunded or exchanged, cannot be transferred to someone else, and cannot be combined with other offers.",
+          "It applies only to the video consultation, not to our other products.",
         ],
       },
       {

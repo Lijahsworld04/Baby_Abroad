@@ -104,6 +104,14 @@ async function createSession(request, env, url) {
   const lines = cleanCart(body && body.items);
   if (!lines) return json({ error: "Your cart looks wrong. Please refresh and try again." }, 400);
 
+  // Quiz reports must be tied to a real quiz submission so we know whose answers to use.
+  const quizLines = lines.filter((l) => l.product.quiz);
+  if (quizLines.length > 1) return json({ error: "Please choose one quiz report." }, 400);
+  const quizId = typeof body.quizId === "string" ? body.quizId : "";
+  if (quizLines.length && !/^q_[a-f0-9]{16}$/.test(quizId)) {
+    return json({ error: "Please start from your quiz results so we know which answers to use." }, 400);
+  }
+
   // Call bookings: each chosen time must be a real, still-open slot.
   const booked = lines.filter((l) => l.slot);
   const tz = validZone(body.timeZone) ? body.timeZone : "UTC";
@@ -137,6 +145,10 @@ async function createSession(request, env, url) {
     }
     form.set(`line_items[${i}][price_data][product_data][description]`, desc.slice(0, 900));
   });
+  if (quizLines.length) {
+    form.set("metadata[quiz_id]", quizId);
+    form.set("metadata[quiz_tier]", quizLines[0].product.id);
+  }
   form.set("metadata[items]", lines.map((l) => `${l.product.id} x${l.qty}`).join(", "));
   // Printed books ship to a U.S. address (Lulu needs a phone number for the carrier too).
   if (lines.some((l) => l.product.physical)) {
@@ -201,6 +213,14 @@ async function quizSubmit(request, env) {
       marketingConsent: body.marketingConsent === true,
       acknowledged: true,
       topMatch: typeof body.topMatch === "string" ? body.topMatch.slice(0, 40) : null,
+      ranking: Array.isArray(body.ranking)
+        ? body.ranking.slice(0, 8).map((r) => ({
+            slug: String((r && r.slug) || "").slice(0, 40),
+            name: String((r && r.name) || "").slice(0, 60),
+            score: Number((r && r.score) || 0),
+            reasons: Array.isArray(r && r.reasons) ? r.reasons.slice(0, 3).map((x) => String(x).slice(0, 120)) : [],
+          }))
+        : [],
       answers,
       submittedAt: new Date().toISOString(),
     }),

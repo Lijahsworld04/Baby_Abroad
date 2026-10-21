@@ -41,6 +41,14 @@ const TOP_META = {
   noindex: true,
 };
 
+function readQuizId(): string | undefined {
+  try {
+    return window.sessionStorage.getItem("ba-quiz-id") || undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 function PaymentForm({ items, timeZone }: { items: { id: string; qty: number; slot?: string }[]; timeZone: string }) {
   const holder = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
@@ -59,7 +67,7 @@ function PaymentForm({ items, timeZone }: { items: { id: string; qty: number; sl
             const res = await fetch("/api/checkout", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ items, timeZone }),
+              body: JSON.stringify({ items, timeZone, quizId: readQuizId() }),
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok || !data.clientSecret) throw new Error(data.error || "Checkout could not start.");

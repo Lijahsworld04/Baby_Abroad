@@ -202,6 +202,9 @@ export const SCREENS = [
 ];
 
 /** Starter profiles for the free teaser. Review before launch. cost = comfortable monthly USD for one person. */
+// Flip to true only when the n8n report workflow is live, so nobody pays for a report we can't deliver yet.
+export const PAID_REPORTS_OPEN = false;
+
 export const COUNTRIES = [
   { slug: "portugal", name: "Portugal", cost: 2200, climate: ["mild", "warm"], setting: ["city", "beach", "countryside"], pace: ["calm", "balanced"], lang: "pt", english: 4, healthcare: 4, safety: 5, expat: 5, visa: 3, travel: 4, walk: 4, internet: 4, culture: 5, hot: false, humid: false, longFlight: false },
   { slug: "spain", name: "Spain", cost: 2000, climate: ["mild", "warm"], setting: ["city", "beach", "countryside"], pace: ["balanced", "energetic"], lang: "es", english: 3, healthcare: 5, safety: 4, expat: 4, visa: 2, travel: 4, walk: 5, internet: 4, culture: 5, hot: false, humid: false, longFlight: false },

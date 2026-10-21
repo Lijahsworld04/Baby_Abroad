@@ -3,7 +3,7 @@
 // (worker/index.js). The server always uses these prices, never a price sent by the browser.
 // If you change a price here, also change the matching price text on the Services page.
 
-/** @typedef {{ id: string, name: string, description: string, amount: number, maxQty: number, booking?: boolean, physical?: boolean }} Product */
+/** @typedef {{ id: string, name: string, description: string, amount: number, maxQty: number, booking?: boolean, physical?: boolean, quiz?: boolean }} Product */
 
 /** @type {Product[]} */
 export const PRODUCTS = [
@@ -76,6 +76,23 @@ export const PRODUCTS = [
     amount: 3500,
     maxQty: 1,
     booking: true,
+  },
+  // Paid relocation-quiz reports. Bought from the quiz results page; the quiz id travels with the order (see worker/index.js).
+  {
+    id: "quiz-snapshot",
+    name: "Match + Visa Snapshot (quiz report)",
+    description: "Your ranked country matches and likely visa route, as a PDF by email. Credited toward a $75 video consultation booked within 30 days (once, no cash value).",
+    amount: 2000,
+    maxQty: 1,
+    quiz: true,
+  },
+  {
+    id: "quiz-brief",
+    name: "Full Relocation Brief (quiz report)",
+    description: "Your full relocation brief as a PDF by email. Credited toward a $75 video consultation booked within 30 days (once, no cash value).",
+    amount: 4000,
+    maxQty: 1,
+    quiz: true,
   },
 ];
 
