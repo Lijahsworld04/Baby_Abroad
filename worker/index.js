@@ -150,6 +150,8 @@ async function createSession(request, env, url) {
     form.set("metadata[quiz_tier]", quizLines[0].product.id);
   }
   form.set("metadata[items]", lines.map((l) => `${l.product.id} x${l.qty}`).join(", "));
+  // The $75 consultation accepts a private, one-time credit code (emailed with a paid quiz report).
+  if (lines.some((l) => l.product.id === "consultation-written-plan")) form.set("allow_promotion_codes", "true");
   // Printed books ship to a U.S. address (Lulu needs a phone number for the carrier too).
   if (lines.some((l) => l.product.physical)) {
     form.set("shipping_address_collection[allowed_countries][0]", "US");
