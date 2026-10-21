@@ -4,6 +4,7 @@ import { Mail, Phone, Music2, ExternalLink } from "lucide-react";
 const FOOTER_LINKS = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Free Match Quiz", href: "/quiz" },
   { label: "How It Works", href: "/howitworks" },
   { label: "Guides", href: "/guides" },
   { label: "FAQ", href: "/faq" },

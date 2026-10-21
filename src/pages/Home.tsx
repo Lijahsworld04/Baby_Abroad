@@ -134,6 +134,15 @@ export default function Home() {
                 <ArrowRight data-icon="inline-end" />
               </Button>
             </Link>
+            <Link to="/quiz">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full border-gold bg-transparent text-primary hover:bg-gold/15 hover:text-primary sm:w-auto"
+              >
+                Take the Free Match Quiz
+              </Button>
+            </Link>
             <Link to="/contact">
               <Button
                 size="lg"
