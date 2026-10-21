@@ -164,7 +164,7 @@ export default function Quiz() {
     <div className="rounded-2xl border-2 border-primary bg-card p-5 text-sm leading-relaxed">
       <p className="font-semibold">Please read this before you start</p>
       <ul className="mt-2 list-disc space-y-1 pl-5">
-        <li>The quiz is free. Your <strong>full results are a paid report</strong> ($20 or $40), sent to your email as a PDF.</li>
+        <li><span className="rounded-md bg-gold px-2 py-1 font-bold text-[#1B1203] [box-decoration-break:clone]">The quiz is free. Your full results are a paid report ($20 or $40), sent to your email as a PDF.</span></li>
         <li>The report is general guidance, not legal or immigration advice. Visa rules change, so always confirm with the official government source.</li>
         <li>A <strong>personalized plan is done on a one-on-one video consultation ($75)</strong>, not through this quiz.</li>
         <li>Whatever you pay for a report is <strong>credited toward that $75 video consultation</strong> if you book within 30 days. The credit works once and has no cash value.</li>
