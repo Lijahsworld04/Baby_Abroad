@@ -5,6 +5,13 @@
   "main": "worker/index.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
+  // Keep any variables or secrets you set in the Cloudflare dashboard when this deploys from GitHub.
+  "keep_vars": true,
+  // The quiz webhook address on n8n. It is not secret (n8n checks the secret token), so it lives here
+  // and survives every deploy. The token itself (N8N_AVAILABILITY_TOKEN) stays a dashboard secret.
+  "vars": {
+    "N8N_QUIZ_URL": "https://n8n.gobabyabroad.com/webhook/baby-abroad-quiz"
+  },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
