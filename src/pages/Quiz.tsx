@@ -321,6 +321,9 @@ export default function Quiz() {
                     <li>Why each one fits you</li>
                     <li>Likely visa route and main money requirement</li>
                     <li>Typical monthly cost</li>
+                    <li>Your first 7 days, step by step</li>
+                    <li>Solo and women's safety checklist</li>
+                    <li>A personal letter and your name on the cover</li>
                   </ul>
                   <p className="mt-3 text-xs text-muted-foreground">Your $20 is credited toward the $75 video consultation.</p>
                   <Button className="mt-4 w-full" variant="outline" disabled={!canBuy} onClick={() => buy("quiz-snapshot")}>{canBuy ? "Get the Snapshot" : "Opening soon"}</Button>

@@ -88,7 +88,7 @@ export const FAQS = [
   },
   {
     q: "What is the difference between the $20 Snapshot and the $40 Full Brief?",
-    a: "The $20 Match + Visa Snapshot gives you your top 3 matches, why each fits you, the likely visa route and main money requirement for each, and typical monthly cost. The $40 Full Relocation Brief is our best value: your top 5 matches in depth, a side-by-side comparison, safety notes for women and solo movers, a budget worksheet, a 12-month roadmap, a first-90-days checklist, a first-7-days plan, and official links.",
+    a: "The $20 Match + Visa Snapshot gives you your top 3 matches, why each fits you, the likely visa route and main money requirement for each, typical monthly cost, a first-7-days action plan and a solo and women's safety checklist. The $40 Full Relocation Brief is our best value: your top 5 matches in depth, a side-by-side comparison, safety notes for women and solo movers, a budget worksheet, a 12-month roadmap, a first-90-days checklist, a first-7-days plan, and official links.",
   },
   {
     q: "How does the credit toward the video consultation work?",
