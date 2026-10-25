@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Ornament } from "@/components/Ornament";
 import { setSureness, useSureness } from "@/lib/sureness";
 
@@ -66,6 +67,15 @@ export function SureSlider() {
               </Link>
               .
             </p>
+            <div className="mt-6 border-t border-primary/15 pt-6">
+              <p className="font-semibold">Not sure where to go? Let us match you.</p>
+              <Link to="/quiz" className="mt-3 inline-block">
+                <Button size="lg" className="bg-gold text-[#1B1203] hover:bg-gold/85">
+                  Take the Free Match Quiz
+                </Button>
+              </Link>
+              <p className="mt-2 text-xs text-muted-foreground">Free to take. Your top country match is on us.</p>
+            </div>
           </CardContent>
         </Card>
       </div>

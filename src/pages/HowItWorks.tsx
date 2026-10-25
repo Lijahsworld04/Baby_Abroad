@@ -11,7 +11,7 @@ const STEPS = [
   {
     icon: Plane,
     title: "Choose Where to Start",
-    desc: "Begin with the offering that fits where you are now, from a simple guide to a full written plan.",
+    desc: "Take the free match quiz to find your top country, or begin with the offering that fits where you are now, from a simple guide to a full written plan.",
   },
   {
     icon: FileText,
@@ -72,9 +72,14 @@ export default function HowItWorks() {
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
               Every journey starts with a single step. We can help you plan yours.
             </p>
-            <Link to="/services" className="mt-6 inline-block">
-              <Button size="lg">Explore Services</Button>
-            </Link>
+            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link to="/quiz">
+                <Button size="lg" className="bg-gold text-[#1B1203] hover:bg-gold/85">Take the Free Match Quiz</Button>
+              </Link>
+              <Link to="/services">
+                <Button size="lg" variant="outline">Explore Services</Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

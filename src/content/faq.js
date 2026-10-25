@@ -4,11 +4,11 @@
 export const FAQS = [
   {
     q: "What does Baby Abroad do?",
-    a: "Baby Abroad helps women of color plan a move abroad. We offer workbooks, a one-hour consultation with a step-by-step written relocation plan, extra plans for more destinations, and hands-on assistance with regular check-ins, job help and visa support.",
+    a: "Baby Abroad helps people of color plan a move abroad. We offer workbooks, a one-hour consultation with a step-by-step written relocation plan, extra plans for more destinations, and hands-on assistance with regular check-ins, job help and visa support.",
   },
   {
     q: "Who is Baby Abroad for?",
-    a: "Baby Abroad is built for women of color who are thinking about, or ready for, a move abroad. You might have never left the United States, be unsure where to go next, or be a younger-generation expat planning a first move. Our approach is supportive, practical and judgment-free.",
+    a: "Baby Abroad is built for people of color who are thinking about, or ready for, a move abroad. You might have never left the United States, be unsure where to go next, or be a younger-generation expat planning a first move. Our approach is supportive, practical and judgment-free.",
   },
   {
     q: "Which countries do you help with?",
@@ -56,7 +56,7 @@ export const FAQS = [
   },
   {
     q: "Why should I choose Baby Abroad?",
-    a: "I left the United States at 18, and much of the advice I received, though well meant, did not fit my background, so I struggled and learned the hard way. Baby Abroad exists so you do not have to. Our guidance is built for women of color and shaped by real experience living abroad, including the day-to-day questions about safety, belonging, hair care and community that generic advice skips.",
+    a: "I left the United States at 18, and much of the advice I received, though well meant, did not fit my background, so I struggled and learned the hard way. Baby Abroad exists so you do not have to. Our guidance is built for people of color and shaped by real experience living abroad, including the day-to-day questions about safety, belonging, hair care and community that generic advice skips.",
   },
   {
     q: "What is a good starter country for moving abroad?",
@@ -76,10 +76,26 @@ export const FAQS = [
   },
   {
     q: "Do you only work with women?",
-    a: "Baby Abroad is geared toward women of color, and that is who our content is written for. We do not turn away anyone, though, and clients of any gender are welcome to book.",
+    a: "Baby Abroad is geared toward people of color, and that is who our content is written for. We do not turn away anyone, though, and clients of any gender are welcome to book.",
   },
   {
     q: "How do I get started?",
     a: "Use the contact form to tell us where you are in your planning, or start with one of our workbooks. You can also reach us by email or WhatsApp, and we will help you choose the right next step.",
+  },
+  {
+    q: "Is the relocation match quiz free?",
+    a: "Yes. The quiz is free and shows your top country match with a short reason why it fits you. Your full ranked results are in the paid reports, which are emailed to you as a PDF. Take the quiz at gobabyabroad.com/quiz.",
+  },
+  {
+    q: "What is the difference between the $20 Snapshot and the $40 Full Brief?",
+    a: "The $20 Match + Visa Snapshot gives you your top 3 matches, why each fits you, the likely visa route and main money requirement for each, and typical monthly cost. The $40 Full Relocation Brief is our best value: your top 5 matches in depth, a side-by-side comparison, safety notes for women and solo movers, a budget worksheet, a 12-month roadmap, a first-90-days checklist, a first-7-days plan, and official links.",
+  },
+  {
+    q: "How does the credit toward the video consultation work?",
+    a: "Whatever you pay for a quiz report is credited toward the $75 video consultation. Your report email includes a private, one-time code. Enter it in the promotion code box at checkout when you book. It works once, must be used within 30 days, and has no cash value.",
+  },
+  {
+    q: "Are the quiz reports legal or immigration advice?",
+    a: "No. The reports are general guidance. Visa rules change often, so each report points you to the official government source to confirm every requirement before you apply or pay for anything.",
   },
 ];

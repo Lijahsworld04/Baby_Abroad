@@ -18,7 +18,7 @@ export default function Guides() {
             </h1>
             <Ornament className="mt-4" />
             <p className="mt-4 text-muted-foreground">
-              Free, practical guides for women of color planning a move abroad, from your first idea
+              Free, practical guides for people of color planning a move abroad, from your first idea
               to your first month in a new country.
             </p>
           </div>

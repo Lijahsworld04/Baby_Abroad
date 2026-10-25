@@ -23,9 +23,9 @@ const LAST = "2026-10-08";
 export const PAGES = [
   {
     path: "/",
-    title: "Baby Abroad | Moving Abroad Guides for Women of Color",
+    title: "Baby Abroad | Moving Abroad Guides for People of Color",
     description:
-      "Plan your move abroad with confidence. Workbooks, consultations, written relocation plans and hands-on support for women of color moving internationally.",
+      "Plan your move abroad with confidence. Workbooks, consultations, written relocation plans and hands-on support for people of color moving internationally.",
     h1: "They didn't make the world for us. I went anyway. Now it's Your Turn.",
     type: "WebPage",
     priority: 1.0,
@@ -34,7 +34,7 @@ export const PAGES = [
     crumb: "Home",
     body: [
       {
-        text: "Baby Abroad offers moving abroad guides, workbooks, consultations and written relocation plans for women of color. Founded by Aalijah Herron, an expat since 18 with experience in 10 countries across 3 continents.",
+        text: "Baby Abroad offers moving abroad guides, workbooks, consultations and written relocation plans for people of color. Founded by Aalijah Herron, an expat since 18 with experience in 10 countries across 3 continents.",
       },
       {
         h2: "Start where you are",
@@ -61,7 +61,7 @@ export const PAGES = [
     path: "/services",
     title: "Relocation Services & Pricing | Baby Abroad",
     description:
-      "Move-abroad workbooks from $6, a $75 consultation with a written relocation plan, and hands-on support for women of color relocating internationally.",
+      "Move-abroad workbooks from $6, a $75 consultation with a written relocation plan, and hands-on support for people of color relocating internationally.",
     h1: "Services & Pricing",
     type: "CollectionPage",
     priority: 0.9,
@@ -120,7 +120,7 @@ export const PAGES = [
     path: "/about",
     title: "About Aalijah Herron & Baby Abroad | Expat Since 18",
     description:
-      "Baby Abroad was founded by Aalijah Herron, an expat since 18 with experience in 10 countries on 3 continents, to help women and people of color move abroad.",
+      "Baby Abroad was founded by Aalijah Herron, an expat since 18 with experience in 10 countries on 3 continents, to help people of color move abroad.",
     h1: "About Baby Abroad",
     type: "AboutPage",
     priority: 0.7,
@@ -129,7 +129,7 @@ export const PAGES = [
     crumb: "About",
     body: [
       {
-        text: "Baby Abroad was founded by Aalijah Herron, a Black woman who has been an expat since 18 and has traveled to 10 countries across 3 continents. The mission is to show people of color that life can be better abroad, and to help them take that step.",
+        text: "Baby Abroad was founded by Aalijah Herron, a Black woman who has been an expat since 18 and has experience in 10 countries across 3 continents. The mission is to show people of color that life can be better abroad, and to help them take that step.",
       },
     ],
     links: [
@@ -160,7 +160,7 @@ export const PAGES = [
   },
   {
     path: "/faq",
-    title: "Moving Abroad FAQ for Women of Color | Baby Abroad",
+    title: "Moving Abroad FAQ for People of Color | Baby Abroad",
     description:
       "Answers to common questions about moving abroad: costs, timelines, visas, working remotely, our consultations and written relocation plans.",
     h1: "Moving Abroad: Frequently Asked Questions",
@@ -177,7 +177,7 @@ export const PAGES = [
   },
   {
     path: "/guides",
-    title: "Moving Abroad Guides for Women of Color | Baby Abroad",
+    title: "Moving Abroad Guides for People of Color | Baby Abroad",
     description:
       "Free, practical guides for moving abroad: step-by-step plans, a 12-month checklist, budgeting, visa options and finding community as a woman of color.",
     h1: "Moving Abroad Guides",

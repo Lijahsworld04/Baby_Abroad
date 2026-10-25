@@ -123,7 +123,7 @@ export const GUIDES = [
     dateModified: "2026-10-03",
     intro: [
       "Moving abroad can feel like one enormous leap, but it is really a series of small, doable decisions. Most people who make the move do it over six to eighteen months, one step at a time.",
-      "This plan is written for women of color, so it makes room for the questions that rarely show up in generic relocation advice: where you will feel safe and welcome, where you can find community, and whether the everyday things that make a place feel like home (food, hair care, culture) will be within reach.",
+      "This plan is written for people of color, so it makes room for the questions that rarely show up in generic relocation advice: where you will feel safe and welcome, where you can find community, and whether the everyday things that make a place feel like home (food, hair care, culture) will be within reach.",
     ],
     sections: [
       {
@@ -289,7 +289,7 @@ export const GUIDES = [
           "Visa feasibility: is there a realistic pathway you qualify for?",
           "Cost of living compared with your income or savings.",
           "Safety, including how safe women feel and how people of color are treated day to day.",
-          "Community: existing groups of women of color, expats and locals who are welcoming.",
+          "Community: existing groups of people of color, expats and locals who are welcoming.",
           "Healthcare: quality, cost and whether you can see providers you trust.",
           "Daily life: climate, language, internet, transit, and access to food, hair care and skin care you love.",
           "Work: remote-work friendliness, time zone overlap with your clients or family, and local job options.",
@@ -306,7 +306,7 @@ export const GUIDES = [
       {
         h2: "How to research real, lived experience",
         list: [
-          "Join online communities for expats and for women of color abroad, and ask pointed questions.",
+          "Join online communities for expats and for people of color abroad, and ask pointed questions.",
           "Follow creators who live in your target city and watch how they describe ordinary days, not only highlights.",
           "Ask about the hard parts: bureaucracy, loneliness, how long it took to make friends.",
           "Book a call with someone who made the move and ask what they wish they had known.",
@@ -482,14 +482,14 @@ export const GUIDES = [
     datePublished: "2026-10-03",
     dateModified: "2026-10-03",
     intro: [
-      "Moving abroad is not only a logistics project. It is also about where you will feel seen, safe and supported. Women of color often carry extra questions into a move: how will I be treated, where is my community, and where can I find the products and people that make me feel like myself?",
+      "Moving abroad is not only a logistics project. It is also about where you will feel seen, safe and supported. People of color often carry extra questions into a move: how will I be treated, where is my community, and where can I find the products and people that make me feel like myself?",
       "Experiences differ by person, place and city, so treat this as a set of ideas to adapt, not a promise about any one country.",
     ],
     sections: [
       {
         h2: "Start building community before you land",
         list: [
-          "Join online groups for expats and for women of color living in your destination.",
+          "Join online groups for expats and for people of color living in your destination.",
           "Introduce yourself, ask specific questions and offer to meet up when you arrive.",
           "Follow local and expat creators to get a feel for different neighborhoods.",
         ],

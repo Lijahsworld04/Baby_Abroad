@@ -296,6 +296,9 @@ export default function Quiz() {
           {stage === "result" && (
             <div>
               <h2 className="text-3xl font-bold text-balance">Your top match{contact.name ? `, ${contact.name.trim()}` : ""}</h2>
+              <p className="mt-4 rounded-xl border border-gold bg-gold/15 p-4 text-sm leading-relaxed">
+                <strong>Your free result:</strong> your number one country and why it fits you. It's yours to keep, no purchase needed. Your other ranked matches, visa routes and next steps are in the paid reports below.
+              </p>
               {result[0] && (
                 <Card className="mt-6 border-primary">
                   <CardContent className="p-6">
@@ -308,18 +311,35 @@ export default function Quiz() {
                 </Card>
               )}
               <p className="mt-6 text-sm text-muted-foreground">
-                This is a starting point only. Your full ranked results, visa options and next steps are in the paid report, which we'll email to you.
+                The free result is a starting point only. Want the full picture? A paid report adds your ranked matches, visa options and next steps, and we'll email it to you as a PDF.
               </p>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="mt-6 grid items-stretch gap-4 sm:grid-cols-2">
                 <Card><CardContent className="p-5">
                   <p className="font-bold">Match + Visa Snapshot</p><p className="text-2xl font-bold">$20</p>
-                  <p className="mt-2 text-sm text-muted-foreground">Your ranked matches, why each fits, and the likely visa route for your passport.</p>
-                  <Button className="mt-4 w-full" disabled={!canBuy} onClick={() => buy("quiz-snapshot")}>{canBuy ? "Get the Snapshot" : "Opening soon"}</Button>
+                  <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+                    <li>Your top 3 country matches</li>
+                    <li>Why each one fits you</li>
+                    <li>Likely visa route and main money requirement</li>
+                    <li>Typical monthly cost</li>
+                  </ul>
+                  <p className="mt-3 text-xs text-muted-foreground">Your $20 is credited toward the $75 video consultation.</p>
+                  <Button className="mt-4 w-full" variant="outline" disabled={!canBuy} onClick={() => buy("quiz-snapshot")}>{canBuy ? "Get the Snapshot" : "Opening soon"}</Button>
                 </CardContent></Card>
-                <Card><CardContent className="p-5">
-                  <p className="font-bold">Full Relocation Brief</p><p className="text-2xl font-bold">$40</p>
-                  <p className="mt-2 text-sm text-muted-foreground">Everything in the Snapshot, plus costs, cities, healthcare, a first-90-days plan and your next steps.</p>
-                  <Button className="mt-4 w-full" disabled={!canBuy} onClick={() => buy("quiz-brief")}>{canBuy ? "Get the Full Brief" : "Opening soon"}</Button>
+                <Card className="relative border-2 border-gold shadow-lg ring-4 ring-gold/20"><CardContent className="p-5">
+                  <span className="absolute -top-3 left-5 rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#1B1203]">Best value</span>
+                  <p className="font-bold">Full Relocation Brief</p><p className="text-3xl font-bold">$40</p>
+                  <p className="mt-2 text-sm font-semibold">Everything in the Snapshot, plus:</p>
+                  <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
+                    <li>Your top 5 matches in depth, side by side</li>
+                    <li>Safety notes for women and solo movers</li>
+                    <li>Budget plan with a fill-in worksheet</li>
+                    <li>12-month roadmap and first-90-days checklist</li>
+                    <li>Your first 7 days, step by step</li>
+                    <li>Extra countries worth a look, and official links</li>
+                    <li>A personal letter and your name on the cover</li>
+                  </ul>
+                  <p className="mt-3 text-xs font-semibold">Your $40 is credited toward the $75 video consultation.</p>
+                  <Button className="mt-4 w-full bg-gold text-[#1B1203] hover:bg-gold/85" disabled={!canBuy} onClick={() => buy("quiz-brief")}>{canBuy ? "Get the Full Brief" : "Opening soon"}</Button>
                 </CardContent></Card>
               </div>
               <div className="mt-6">{Disclaimer}</div>

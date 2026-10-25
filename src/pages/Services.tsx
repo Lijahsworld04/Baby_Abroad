@@ -31,11 +31,17 @@ import {
   Info,
   Plus,
   Check,
+  Sparkles,
 } from "lucide-react";
 import { useCart } from "@/lib/cart";
 
 
 const SERVICES = [
+  {
+    icon: Sparkles,
+    title: "Relocation Match Quiz + Reports",
+    desc: "Take the free quiz to see your top country match. Want the full picture? Get a personalized PDF report: the $20 Match + Visa Snapshot or the $40 Full Relocation Brief, credited toward your consultation.",
+  },
   {
     icon: Plane,
     title: "Gettin' Gone",
@@ -187,6 +193,19 @@ export default function Services() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Quiz + reports */}
+          <div className="relative mt-16 overflow-hidden rounded-3xl border border-gold/30 bg-gradient-to-br from-[var(--cta-from)] to-[var(--cta-to)] p-8 text-center backdrop-blur-md md:p-12">
+            <h2 className="text-2xl font-bold tracking-tight text-balance md:text-3xl">
+              Not sure where to move? Start with the free quiz.
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              Answer a few questions and see your top country match for free. Then, if you want more, choose a personalized report: the <strong>$20 Match + Visa Snapshot</strong> (your top 3 matches and likely visa route) or the <strong>$40 Full Relocation Brief</strong> (our best value: your top 5 in depth, a budget worksheet, a 12-month roadmap and more). Whatever you pay is credited toward the $75 video consultation if you book within 30 days.
+            </p>
+            <Link to="/quiz" className="mt-6 inline-block">
+              <Button size="lg" className="bg-gold text-[#1B1203] hover:bg-gold/85">Take the Free Match Quiz</Button>
+            </Link>
           </div>
 
           {/* Pricing table */}

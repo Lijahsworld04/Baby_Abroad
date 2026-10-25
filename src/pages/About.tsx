@@ -37,7 +37,7 @@ export default function About() {
               <CardContent className="grid gap-4">
                 <p className="text-muted-foreground">
                   Baby Abroad was founded by Aalijah Herron, a Black woman who has been an expat
-                  since 18 and has traveled to 10 countries across 3 continents.
+                  since 18 and has experience in 10 countries across 3 continents.
                 </p>
                 <p className="text-muted-foreground">
                   The mission is simple: to show people of color that life can be better abroad —

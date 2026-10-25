@@ -4,9 +4,9 @@
 export const SITE = {
   url: "https://gobabyabroad.com",
   name: "Baby Abroad",
-  tagline: "Moving abroad guides, workbooks and consultations for women of color",
+  tagline: "Moving abroad guides, workbooks and consultations for people of color",
   description:
-    "Baby Abroad helps women of color plan a move abroad with workbooks, one-on-one consultations, step-by-step written relocation plans and hands-on support.",
+    "Baby Abroad helps people of color plan a move abroad with workbooks, one-on-one consultations, step-by-step written relocation plans and hands-on support.",
   locale: "en_US",
   language: "en",
   founder: "Aalijah Herron",
@@ -15,7 +15,7 @@ export const SITE = {
   whatsapp: "https://wa.me/18156169684",
   sameAs: ["https://instagram.com/babyabroadofficial", "https://tiktok.com/@babyabroadofficial"],
   ogImage: "/og-image.png",
-  ogImageAlt: "Baby Abroad: relocation guides and consultations for women of color moving abroad",
+  ogImageAlt: "Baby Abroad: relocation guides and consultations for people of color moving abroad",
   logo: "/logo.png",
   themeColor: "#021E12",
   published: "2026-10-03",

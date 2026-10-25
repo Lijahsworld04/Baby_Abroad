@@ -119,7 +119,7 @@ export default function Home() {
             <span className="text-highlight italic">Your Turn</span>.
           </h1>
           <h2 className="mt-5 max-w-2xl text-balance font-heading text-xl font-semibold text-primary md:text-2xl">
-            Moving abroad guides, workbooks and consultations for women of color
+            Moving abroad guides, workbooks and consultations for people of color
           </h2>
           <p className="mt-3 max-w-xl text-balance text-lg text-muted-foreground">
             From a simple guide to a hands-on assistant, we help you plan your move with confidence.
@@ -257,7 +257,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-balance md:text-4xl">
-              Relocation Planning Made for Women of Color
+              Relocation Planning Made for People of Color
             </h2>
             <Ornament className="mt-4" />
             <p className="mt-4 text-muted-foreground">

@@ -33,7 +33,7 @@ function organizationNode() {
       "International relocation planning",
       "Expat life",
       "Visa planning",
-      "Relocation for women of color",
+      "Relocation for people of color",
     ],
     contactPoint: {
       "@type": "ContactPoint",
