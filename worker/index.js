@@ -150,6 +150,9 @@ async function createSession(request, env, url) {
     form.set("metadata[quiz_tier]", quizLines[0].product.id);
   }
   form.set("metadata[items]", lines.map((l) => `${l.product.id} x${l.qty}`).join(", "));
+  // Affiliate credit: a short code from a ?ref= link (letters and numbers only).
+  const ref = typeof body.ref === "string" ? body.ref.trim().toLowerCase() : "";
+  if (/^[a-z0-9]{3,24}$/.test(ref)) form.set("metadata[ref]", ref);
   // The $75 consultation accepts a private, one-time credit code (emailed with a paid quiz report).
   if (lines.some((l) => l.product.id === "consultation-written-plan")) form.set("allow_promotion_codes", "true");
   // Printed books ship to a U.S. address (Lulu needs a phone number for the carrier too).

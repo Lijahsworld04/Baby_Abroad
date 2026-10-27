@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Scheduler, TimezoneSelect, detectZone, formatSlot } from "@/components/Scheduler";
 import { useCart } from "@/lib/cart";
 import { getProduct, formatPrice } from "@/content/catalog.js";
+import { readRef } from "@/lib/affiliate";
 
 // Stripe's own script must be loaded from js.stripe.com (Stripe requires this; it is never bundled).
 const STRIPE_JS = "https://js.stripe.com/endive/stripe.js";
@@ -67,7 +68,7 @@ function PaymentForm({ items, timeZone }: { items: { id: string; qty: number; sl
             const res = await fetch("/api/checkout", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ items, timeZone, quizId: readQuizId() }),
+              body: JSON.stringify({ items, timeZone, quizId: readQuizId(), ref: readRef() }),
             });
             const data = await res.json().catch(() => ({}));
             if (!res.ok || !data.clientSecret) throw new Error(data.error || "Checkout could not start.");

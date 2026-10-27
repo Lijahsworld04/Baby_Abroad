@@ -44,6 +44,51 @@ const optionClass = (on: boolean) =>
     ? "border-primary bg-primary text-primary-foreground"
     : "border-border bg-card hover:border-primary/60");
 
+const SHARE_URL = "https://gobabyabroad.com/quiz";
+
+/** Draws a 1080x1350 share card (nothing personal on it: just the country and the quiz link). */
+async function makeShareCard(country: string): Promise<Blob | null> {
+  try {
+    const W = 1080, H = 1350;
+    const canvas = document.createElement("canvas");
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    try {
+      await Promise.all([
+        document.fonts.load('90px "Pinyon Script"'),
+        document.fonts.load('600 30px "Playfair Display"'),
+        document.fonts.load('italic 40px "Cormorant Garamond"'),
+      ]);
+    } catch { /* fall back to system fonts */ }
+    ctx.fillStyle = "#FFFBF2"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#D9A21B"; ctx.lineWidth = 4; ctx.strokeRect(44, 44, W - 88, H - 88);
+    ctx.strokeStyle = "#CDBCF0"; ctx.lineWidth = 2; ctx.strokeRect(62, 62, W - 124, H - 124);
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillStyle = "#8A5A00"; ctx.font = '600 30px "Playfair Display", Georgia, serif';
+    (ctx as any).letterSpacing = "10px";
+    ctx.fillText("BABY ABROAD", W / 2, 190);
+    (ctx as any).letterSpacing = "0px";
+    ctx.fillStyle = "#6B5A8E"; ctx.font = 'italic 56px "Cormorant Garamond", Georgia, serif';
+    ctx.fillText("My top country match is", W / 2, 420);
+    let size = 190;
+    ctx.fillStyle = "#8A5A00";
+    do { ctx.font = size + 'px "Pinyon Script", "Brush Script MT", cursive'; size -= 8; } while (ctx.measureText(country).width > W - 220 && size > 60);
+    ctx.fillText(country, W / 2, 640);
+    ctx.strokeStyle = "#D9A21B"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(W / 2 - 150, 800); ctx.lineTo(W / 2 + 150, 800); ctx.stroke();
+    ctx.fillStyle = "#4B2E83"; ctx.font = 'italic 54px "Cormorant Garamond", Georgia, serif';
+    ctx.fillText("Where should you move?", W / 2, 930);
+    ctx.fillStyle = "#9F84E0"; ctx.font = '80px "Pinyon Script", "Brush Script MT", cursive';
+    ctx.fillText("Take the free quiz", W / 2, 1050);
+    ctx.fillStyle = "#8A5A00"; ctx.font = '600 38px "Playfair Display", Georgia, serif';
+    ctx.fillText("gobabyabroad.com/quiz", W / 2, 1190);
+    return await new Promise<Blob | null>((res) => canvas.toBlob((b) => res(b), "image/png"));
+  } catch {
+    return null;
+  }
+}
+
 export default function Quiz() {
   const [stage, setStage] = useState<Stage>("intro");
   const [step, setStep] = useState(0);
@@ -54,6 +99,7 @@ export default function Quiz() {
   const [quizId, setQuizId] = useState("");
   const navigate = useNavigate();
   const cart = useCart();
+  const [shareMsg, setShareMsg] = useState("");
 
   useEffect(() => {
     try {
@@ -156,6 +202,42 @@ export default function Quiz() {
     } finally {
       setSending(false);
     }
+  }
+
+  async function shareResult(country: string) {
+    setShareMsg("");
+    const text = `My top country match is ${country}! Find yours with the free Baby Abroad quiz:`;
+    const blob = await makeShareCard(country);
+    const file = blob ? new File([blob], "my-baby-abroad-match.png", { type: "image/png" }) : null;
+    try {
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], text: `${text} ${SHARE_URL}` });
+        return;
+      }
+      if (navigator.share) {
+        await navigator.share({ text, url: SHARE_URL });
+        return;
+      }
+    } catch (err: any) {
+      if (err && err.name === "AbortError") return;
+    }
+    try { await navigator.clipboard.writeText(`${text} ${SHARE_URL}`); } catch { /* ignore */ }
+    if (blob) saveBlob(blob);
+    setShareMsg("Your card is saved and the link is copied. Post it anywhere you like!");
+  }
+
+  async function downloadCard(country: string) {
+    const blob = await makeShareCard(country);
+    if (blob) { saveBlob(blob); setShareMsg("Saved! Post it to your story and tag @babyabroadofficial."); }
+    else setShareMsg("Sorry, we couldn't make the image. You can still share the link: " + SHARE_URL);
+  }
+
+  function saveBlob(blob: Blob) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "my-baby-abroad-match.png";
+    document.body.appendChild(a); a.click(); a.remove();
+    window.setTimeout(() => URL.revokeObjectURL(a.href), 4000);
   }
 
   const pct = stage === "intro" ? 0 : stage === "quiz" ? Math.round((step / (SCREENS.length + 1)) * 100) : stage === "contact" ? Math.round((SCREENS.length / (SCREENS.length + 1)) * 100) : 100;
@@ -309,6 +391,18 @@ export default function Quiz() {
                     </ul>
                   </CardContent>
                 </Card>
+              )}
+              {result[0] && (
+                <div className="mt-6 rounded-xl border border-primary/30 p-4 text-center">
+                  <p className="font-semibold">Love your match? Share it with a friend.</p>
+                  <div className="mt-3 flex flex-col items-center justify-center gap-2 sm:flex-row">
+                    <Button type="button" className="bg-gold text-[#1B1203] hover:bg-gold/85" onClick={() => shareResult(result[0].name)}>
+                      Share my result
+                    </Button>
+                    <Button type="button" variant="outline" onClick={() => downloadCard(result[0].name)}>Save the image</Button>
+                  </div>
+                  {shareMsg && <p className="mt-2 text-sm text-muted-foreground" aria-live="polite">{shareMsg}</p>}
+                </div>
               )}
               <p className="mt-6 text-sm text-muted-foreground">
                 The free result is a starting point only. Want the full picture? A paid report adds your ranked matches, visa options and next steps, and we'll email it to you as a PDF.

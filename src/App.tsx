@@ -6,6 +6,7 @@ import { BackgroundTree } from "./components/BackgroundTree";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { CartProvider } from "./lib/cart";
 import { initSureness } from "./lib/sureness";
+import { captureRef } from "./lib/affiliate";
 
 import Home from "./pages/Home";
 import Services from "./pages/Services";
@@ -24,6 +25,7 @@ import { Privacy, Terms } from "./pages/Legal";
 export default function App() {
   useEffect(() => {
     initSureness();
+    captureRef();
   }, []);
 
   return (
